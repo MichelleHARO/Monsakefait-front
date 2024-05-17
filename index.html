@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Application</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="libs/swiper-bundle.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">MonSite</div>
+        <div class="menu-burger">☰</div>
+        <div class="profile-menu">
+            <div class="profile-logo">👤</div>
+            <div class="profile-email">user@example.com</div>
+            <button class="logout-button">Se Déconnecter</button>
+        </div>
+    </header>
+    <main>
+        <div class="current-tile">
+            <h2>Nom de la Gamme</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- Les slides -->
+                    <div class="swiper-slide">Sac 1</div>
+                    <div class="swiper-slide">Sac 2</div>
+                    <div class="swiper-slide">Sac 3</div>
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <button class="add-to-list-button">Ajouter à Monsak</button>
+        </div>
+        <button class="arrow-up">↑</button>
+        <button class="arrow-down">↓</button>
+    </main>
+    <script src="libs/swiper-bundle.min.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
