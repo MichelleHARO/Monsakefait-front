@@ -1,11 +1,13 @@
 // pages/HomePage.jsx
 import React from 'react';
+import Navbar from '../components/Navbar.jsx';
+import Accordion from "../components/Accordion.jsx";
 
 const HomePage = () => {
     return (
         <div>
-            <h2 className="text-2xl font-bold">Home Page</h2>
-            {/* Contenu de votre page d'accueil ici */}
+            <Navbar/>
+            <Accordion/>
         </div>
     );
 };

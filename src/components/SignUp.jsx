@@ -1,7 +1,7 @@
 // components/SignUp.jsx
 // FORMULAIRE D'INSCRIPTION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 const SignUp = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -9,8 +9,10 @@ const SignUp = ({ onChange, onSubmit }) => {
         email: '',
         password: '',
         confirmPassword: '',
-        username: ''
     });
+    const [error, setError] = useState('');
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,9 +23,37 @@ const SignUp = ({ onChange, onSubmit }) => {
         if (onChange) onChange(formData);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!emailRegex.test(formData.email)) {
+            setError('Veuillez entrer une adresse e-mail valide.');
+            return;
+        }
+
         if (onSubmit) onSubmit(formData);
+
+        try {
+            const response = await fetch('http://localhost:5173/api/user/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Sign up successful:', data);
+                // Handle successful sign up (e.g., redirect, show success message, etc.)
+            } else {
+                console.error('Sign up failed:', response.statusText);
+                // Handle sign up failure (e.g., show error message)
+            }
+        } catch (error) {
+            console.error('Error during sign up:', error);
+            // Handle error during sign up (e.g., network error)
+        }
     };
 
     return (
@@ -53,6 +83,7 @@ const SignUp = ({ onChange, onSubmit }) => {
                         placeholder="daisy@site.com"
                     />
                 </label>
+                {error && <p className="text-red-500">{error}</p>}
             </div>
             <div className="mb-4">
                 <label className="input input-bordered flex items-center gap-2">
@@ -69,7 +100,7 @@ const SignUp = ({ onChange, onSubmit }) => {
             </div>
             <div className="mb-4">
                 <label className="input input-bordered flex items-center gap-2">
-                    Confirm Password
+                    Password
                     <input
                         type="password"
                         name="confirmPassword"
