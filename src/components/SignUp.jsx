@@ -60,19 +60,6 @@ const SignUp = ({ onChange, onSubmit }) => {
         <form onSubmit={handleSubmit} className="w-full max-w-sm">
             <div className="mb-4">
                 <label className="input input-bordered flex items-center gap-2">
-                    Name
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="grow"
-                        placeholder="Daisy"
-                    />
-                </label>
-            </div>
-            <div className="mb-4">
-                <label className="input input-bordered flex items-center gap-2">
                     Email
                     <input
                         type="email"
