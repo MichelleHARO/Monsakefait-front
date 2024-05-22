@@ -1,11 +1,12 @@
 // components/SignUp.jsx
 // FORMULAIRE D'INSCRIPTION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
 
+// eslint-disable-next-line no-unused-vars
 import React, {useState} from 'react';
 
+// eslint-disable-next-line react/prop-types
 const SignUp = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
-        name: '',
         email: '',
         password: '',
         confirmPassword: '',
