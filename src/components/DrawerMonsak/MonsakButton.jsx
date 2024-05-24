@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-
+// eslint-disable-next-line react/prop-types
 const MonsakButton = ({id, setOpenBagAccordion}) => {
     const handleClick = (id) => {
 /*        console.log("click", id)*/

@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import React, {useState} from 'react';
-import MonsakButton from './MonsakButtons.jsx';
+import MonsakButton from './MonsakButton.jsx';
 import MonsakAccordion from "./MonsakAccordion.jsx";
 
 
@@ -9,10 +10,15 @@ const DrawerContent = () => {
     console.log("Sac Actif", openBagAccordion)
 
     const MonsakArray = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        { id: 4 },
+        { id: 1, desc: "Un prout nucléaire",
+            items: [{name: "Une vulve"},
+                {name: "Un zizi"},
+                {name: "Une vache"},
+                {name: "Un sexe "},]},
+
+        { id: 2, desc: "Une femme avec zizi", items:[] },
+        { id: 3, desc: "Une vulvo vache", items:[] },
+        { id: 4, desc: "Un sexe velu", items:[]},
     ];
 
     return (
@@ -25,7 +31,7 @@ const DrawerContent = () => {
 
             </div>
             {MonsakArray.map((monsak) => (
-                <MonsakAccordion key={monsak.id} id={monsak.id} openBagAccordion={openBagAccordion} />
+                <MonsakAccordion key={monsak.id} monsak={monsak} openBagAccordion={openBagAccordion} />
             ))}
         </div>
     );
