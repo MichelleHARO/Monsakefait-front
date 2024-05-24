@@ -11,8 +11,7 @@ const sacs = [{id: 1, name: 'Mon sac', color: 'grey', items: [{id: 1, name: "ziz
 function Collection({id}) {
     return (<div className="collapse collapse-plus bg-base-200">
             <input type="radio" name="my-accordion-3" defaultChecked/>
-            <div className="collapse-title text-xl font-medium">
-                Nom de la collection : {id}
+            <div className="collapse-title text-xl font-medium">             Nom de la collection : {id}
             </div>
             <div className="collapse-content">
                 <div className={"flex flex-wrap"}>
