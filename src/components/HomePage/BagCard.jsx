@@ -5,7 +5,7 @@ const BagCard = ({sac}) => {
     // eslint-disable-next-line react/prop-types
     const {name, colors, items} = sac
 
-    // Fonction pour gérer l'ajout à Monsak
+    // Fonction pour gérer l'ajout à MonsakCollection
     const handleAddToMonsak = async () => {
         console.log("click")
     }

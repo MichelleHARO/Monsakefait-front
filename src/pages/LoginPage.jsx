@@ -3,8 +3,8 @@
 // Utilise un bouton pour basculer entre les deux vues et affiche le formulaire approprié.
 
 import React, { useState } from 'react';
-import Login from '../components/Login';
-import SignUp from '../components/SignUp';
+import Login from '../components/LoginPage/Login.jsx';
+import SignUp from '../components/LoginPage/SignUp.jsx';
 
 const LoginPage = () => {
     const [isLogin, setIsLogin] = useState(true);

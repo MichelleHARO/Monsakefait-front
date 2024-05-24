@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawerContent from './DrawerContent.jsx';
+import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
 
 const Navbar = () => {
     const userEmail = "prout@prout.prout";
@@ -44,8 +44,8 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li className="mb-4"><a>Se déconnecter</a></li>
-                        <hr className="my-4" />
-                        <DrawerContent />
+                        <hr className="my-4 border-1 border-gray-300"/>
+                        <DrawerContent/>
                     </ul>
                 </div>
             </div>
