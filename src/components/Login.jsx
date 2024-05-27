@@ -6,7 +6,8 @@ import React, { useState } from 'react';
 const Login = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
         email: '',
-        password: ''
+        password: '',
+        token: '',
     });
 
     const handleChange = (e) => {
@@ -23,22 +24,25 @@ const Login = ({ onChange, onSubmit }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://localhost:5173/api/user/login', {
+            const response = await fetch('http://localhost:3001/api/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({ email: formData.email, password: formData.password })
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Login successful:', data);
-                // Handle successful login (e.g., redirect, store token, etc.)
-            } else {
-                console.error('Login failed:', response.statusText);
-                // Handle login failure (e.g., show error message)
+            if (!response.ok) {
+                throw new Error('Error logging in');
+
             }
+
+            const data = await response.json();
+            const { token } = data;
+            setFormData({ ...formData, token });
+            localStorage.setItem('token', token);
+            console.log('Login successful. Token :', token);
+            // Handle successful login (e.g., redirect, store token, etc.)
         } catch (error) {
             console.error('Error during login:', error);
             // Handle error during login (e.g., network error)
@@ -79,3 +83,4 @@ const Login = ({ onChange, onSubmit }) => {
 };
 
 export default Login;
+
