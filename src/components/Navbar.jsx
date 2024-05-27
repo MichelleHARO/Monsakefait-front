@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const userEmail = "prout@prout.prout";
@@ -10,17 +11,17 @@ const Navbar = () => {
             </div>
             <div className="flex-none">
                 <label htmlFor="my-drawer-4" className="btn btn-ghost btn-circle drawer-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                  d="M4 6h16M4 12h16m-7 6h7"/>
-                        </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
                 </label>
             </div>
         </div>
 
         <div className="drawer z-20 drawer-end">
-            <input id="my-drawer-4" type="checkbox" className="drawer-toggle"/>
+            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 {/* Page content here */}
             </div>
@@ -43,10 +44,10 @@ const Navbar = () => {
                             <span className="text-sm">{userEmail}</span>
                         </a>
                     </li>
-                    <li><a>Se déconnecter</a></li>
+                    <li><Link to='/Logout'>Se déconnecter</Link></li>
                 </ul>
-                </div>
             </div>
+        </div>
     </div>);
 }
 
