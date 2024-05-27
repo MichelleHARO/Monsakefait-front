@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 
+// eslint-disable-next-line react/prop-types
 const SignUp = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
         email: '',
