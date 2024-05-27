@@ -23,7 +23,7 @@ const Login = ({ onChange, onSubmit }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://localhost:5173/api/user/login', {
+            const response = await fetch('http://localhost:3001/api/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
