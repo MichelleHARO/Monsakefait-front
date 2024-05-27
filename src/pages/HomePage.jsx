@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar.jsx';
 import Accordion from "../components/Accordion.jsx";
+import Collection from '../components/Collection.jsx';
 
 const HomePage = () => {
     return (
@@ -13,3 +14,5 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
