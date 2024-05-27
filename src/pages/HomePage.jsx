@@ -6,8 +6,9 @@ import Accordion from "../components/Accordion.jsx";
 const HomePage = () => {
     return (
         <div>
-            <Navbar/>
-            <Accordion/>
+            <Navbar />
+            <Accordion />
+           
         </div>
     );
 };
