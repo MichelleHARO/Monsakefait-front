@@ -1,8 +1,7 @@
 // components/SignUp.jsx
 // FORMULAIRE D'INSCRIPTION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
 
-// eslint-disable-next-line no-unused-vars
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 // eslint-disable-next-line react/prop-types
 const SignUp = ({ onChange, onSubmit }) => {
@@ -10,6 +9,7 @@ const SignUp = ({ onChange, onSubmit }) => {
         email: '',
         password: '',
         confirmPassword: '',
+        token: '',
     });
     const [error, setError] = useState('');
 
@@ -35,17 +35,21 @@ const SignUp = ({ onChange, onSubmit }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://localhost:5173/api/user/signup', {
+            const response = await fetch('http://localhost:3001/api/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword }) //pour n'envoyer que les champs qui nous intéressent au back de formData (pas le token donc) et éviter retour erreur car "all fields required"
             });
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Sign up successful:', data);
+                //ajout token lorsque l'utilisateur est registered
+                const { token } = data;
+                setFormData({ ...formData, token });
+                localStorage.setItem('token', token);
+                console.log('Sign up successful:', data, 'Token :', token);
                 // Handle successful sign up (e.g., redirect, show success message, etc.)
             } else {
                 console.error('Sign up failed:', response.statusText);
