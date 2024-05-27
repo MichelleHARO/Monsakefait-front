@@ -4,11 +4,12 @@ import Navbar from '../components/Navbar.jsx';
 import Accordion from "../components/Accordion.jsx";
 import Collection from '../components/Collection.jsx';
 
+
 const HomePage = () => {
     return (
         <div>
-            <Navbar/>
-            <Accordion/>
+            <Navbar />
+            <Accordion />
         </div>
     );
 };
