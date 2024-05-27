@@ -1,19 +1,15 @@
 // pages/HomePage.jsx
 import React from 'react';
-import Navbar from '../components/Navbar.jsx';
-import Accordion from "../components/Accordion.jsx";
-import Collection from '../components/Collection.jsx';
-
+import Navbar from '../components/HomePage/Navbar.jsx';
+import Accordion from "../components/HomePage/Accordion.jsx";
 
 const HomePage = () => {
     return (
         <div>
-            <Navbar />
-            <Accordion />
+            <Navbar/>
+            <Accordion/>
         </div>
     );
 };
 
 export default HomePage;
-
-
