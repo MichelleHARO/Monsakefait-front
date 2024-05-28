@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
-import Logout from './components/Logout';
+import Logout from './components/LoginPage/Logout';
 
 export default function App() {
     return (
