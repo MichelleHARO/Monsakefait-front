@@ -6,13 +6,19 @@ import MonsakAccordion from "./MonsakAccordion.jsx";
 const DrawerContent = () => {
     const MonsakArray = [{
         id: 1,
-        desc: "Un prout nucléaire",
-        items: [{name: "Une vulve"}, {name: "Un zizi"}, {name: "Une vache"}, {name: "Un sexe"}]
-    }, {id: 2, desc: "Une femme avec zizi", items: []}, {id: 3, desc: "Une vulvo vache", items: []}, {
-        id: 4,
-        desc: "Un sexe velu",
-        items: []
-    },];
+        desc: "Un sac ultra bg",
+        items: [{name: "Un pot de whey"}, {name: "Une paire de claquette"}, {name: "Une vache"}, {name: "Un set de boule de pétanque"}]},
+        {id: 2,
+        desc: "Un sac trop bien",
+        items: []},
+        {id: 3, desc: "Une pensée pour tout les freres au hebs", items: []},
+        {id: 4,
+        desc: "Un sac bien mais moins bien que l'autre",
+        items: [{name: "Une seat ibiza faiblement kilometré"}, {name: "un militant de la france insoumise"}, {name: "Cyril hannouna"}, {name: "un feur"}]},
+        {id: 5,
+            desc: "Un saco pointu turlututu",
+            items: [{name: " un fouet"}, {name: "un cable HDMI"}, {name: "un push mid déclic en A"}, {name: "un retracement de fibonacci"}]},
+    ];
 
     const [openBagAccordion, setOpenBagAccordion] = useState(1);
     const [messak, setMessak] = useState(MonsakArray);

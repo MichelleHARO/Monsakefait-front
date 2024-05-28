@@ -26,7 +26,7 @@ const Navbar = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-1/2 min-h-full bg-base-200 text-base-content">
+                    <ul className="menu p-4 w-3/4 min-h-full bg-base-200 text-base-content">
                         {/* Sidebar content here */}
                         <li className="mb-4">
                             <a className="flex items-center">
