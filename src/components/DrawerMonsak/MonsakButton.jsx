@@ -11,10 +11,10 @@ const MonsakButton = ({id, setOpenBagAccordion, handleDelete}) => {
             <button
                 onClick={() => handleClick(id)}
                 className="btn btn-outline btn-primary flex items-center justify-between"
-                style={{borderColor: 'white', color: 'white'}}
+                style={{borderColor: 'black', color: 'black'}}
             >
                 <span>
-                    Monsak : <span className="text-primary" style={{color: 'white'}}>{id}</span>
+                    Monsak : <span className="text-primary" style={{color: 'blue'}}>{id}</span>
                 </span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
