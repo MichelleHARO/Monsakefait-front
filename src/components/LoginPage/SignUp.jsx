@@ -9,7 +9,6 @@ const SignUp = ({ onChange, onSubmit }) => {
         email: '',
         password: '',
         confirmPassword: '',
-        token: '',
     });
     const [error, setError] = useState('');
 
@@ -45,11 +44,7 @@ const SignUp = ({ onChange, onSubmit }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                //ajout token lorsque l'utilisateur est registered
-                const { token } = data;
-                setFormData({ ...formData, token });
-                localStorage.setItem('token', token);
-                console.log('Sign up successful:', data, 'Token :', token);
+                console.log('Sign up successful:', data);
                 // Handle successful sign up (e.g., redirect, show success message, etc.)
             } else {
                 console.error('Sign up failed:', response.statusText);
