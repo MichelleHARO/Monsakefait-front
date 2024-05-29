@@ -56,7 +56,7 @@ const BagCard = ({ sac }) => {
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl m-2">
             <figure className="p-12 w-auto">
-                <img src="https://i.ibb.co/0tTSjYB/bagvanilla.png" alt="Shoes" className="w-1/5" />
+                <img src="https://i.ibb.co/VqP4txN/bagvanillanoir.png" alt="Shoes" className="w-1/5" />
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
