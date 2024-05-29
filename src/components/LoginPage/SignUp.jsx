@@ -1,10 +1,6 @@
-// components/SignUp.jsx
-// FORMULAIRE D'INSCRIPTION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// eslint-disable-next-line react/prop-types
 const SignUp = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
         email: '',
@@ -37,12 +33,12 @@ const SignUp = ({ onChange, onSubmit }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://localhost:3001/api/user/signup', {
+            const response = await fetch(`${process.env.BASE_URL}/api/user/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword }) //pour n'envoyer que les champs qui nous intéressent au back de formData (pas le token donc) et éviter retour erreur car "all fields required"
+                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword })
             });
 
             if (response.ok) {
