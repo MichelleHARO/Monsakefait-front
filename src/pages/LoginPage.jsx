@@ -2,15 +2,30 @@
 // Composant LoginPage : Gère l'état isLogin pour basculer entre les formulaires de connexion et d'inscription.
 // Utilise un bouton pour basculer entre les deux vues et affiche le formulaire approprié.
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Login from '../components/LoginPage/Login.jsx';
 import SignUp from '../components/LoginPage/SignUp.jsx';
 
 const LoginPage = () => {
     const [isLogin, setIsLogin] = useState(true);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === '/signup') {
+            setIsLogin(false);
+        } else {
+            setIsLogin(true);
+        }
+    }, [location.pathname]);
 
     const handleToggle = () => {
-        setIsLogin(!isLogin);
+        if (isLogin) {
+            navigate('/signup');
+        } else {
+            navigate('/login');
+        }
     };
 
     const handleLoginSubmit = (formData) => {
