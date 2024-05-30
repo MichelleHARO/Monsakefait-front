@@ -37,7 +37,6 @@ const Login = ({ onChange, onSubmit }) => {
 
             if (!response.ok) {
                 throw new Error('Error logging in');
-
             }
 
             const data = await response.json();
@@ -46,7 +45,8 @@ const Login = ({ onChange, onSubmit }) => {
             localStorage.setItem('token', token);
             console.log('Login successful. Token :', token);
             // Handle successful login (e.g., redirect, store token, etc.)
-            navigate('/homepage');
+            // If login successful, redirect to the home page
+            navigate('/homepage')
         } catch (error) {
             console.error('Error during login:', error);
             // Handle error during login (e.g., network error)
@@ -82,6 +82,7 @@ const Login = ({ onChange, onSubmit }) => {
                 </label>
             </div>
             <button type="submit" className="btn btn-primary w-full">Log In</button>
+            
         </form>
     );
 };
