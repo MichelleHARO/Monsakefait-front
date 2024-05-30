@@ -1,5 +1,7 @@
 import React from 'react';
 import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
+import Logout from '../LoginPage/Logout.jsx';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const userEmail = "prout@prout.prout";
@@ -43,7 +45,7 @@ const Navbar = () => {
                                 <span className="text-sm">{userEmail}</span>
                             </a>
                         </li>
-                        <li className="mb-4"><a>Se déconnecter</a></li>
+                        <li className="mb-4"><Link to='/logout'>Se déconnecter</Link></li>
                         <hr className="my-4 border-1 border-gray-300"/>
                         <DrawerContent/>
                     </ul>
