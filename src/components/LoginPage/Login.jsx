@@ -2,6 +2,7 @@
 // FORMULAIRE DE CONNEXION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
 
 import React, { useState } from 'react';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onChange, onSubmit }) => {
@@ -21,13 +22,14 @@ const Login = ({ onChange, onSubmit }) => {
         });
         if (onChange) onChange(formData);
     };
+    const apiUrl = useApiUrl();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://hugoperhirin-server.eddi.cloud/api/user/login', {
+            const response = await fetch(`${apiUrl}/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -82,7 +84,7 @@ const Login = ({ onChange, onSubmit }) => {
                 </label>
             </div>
             <button type="submit" className="btn btn-primary w-full">Log In</button>
-            
+
         </form>
     );
 };

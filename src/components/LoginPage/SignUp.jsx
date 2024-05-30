@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = ({ onChange, onSubmit }) => {
@@ -8,6 +9,7 @@ const SignUp = ({ onChange, onSubmit }) => {
         confirmPassword: '',
     });
     const [error, setError] = useState('');
+    const apiUrl = useApiUrl();
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -33,7 +35,7 @@ const SignUp = ({ onChange, onSubmit }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch(`${process.env.BASE_URL}/api/user/signup`, {
+            const response = await fetch(`${apiUrl}/api/user/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
