@@ -2,6 +2,7 @@
 // FORMULAIRE D'INSCRIPTION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 const SignUp = ({ onChange, onSubmit }) => {
@@ -13,6 +14,8 @@ const SignUp = ({ onChange, onSubmit }) => {
     const [error, setError] = useState('');
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -46,6 +49,7 @@ const SignUp = ({ onChange, onSubmit }) => {
                 const data = await response.json();
                 console.log('Sign up successful:', data);
                 // Handle successful sign up (e.g., redirect, show success message, etc.)
+                navigate('/login');
             } else {
                 console.error('Sign up failed:', response.statusText);
                 // Handle sign up failure (e.g., show error message)
