@@ -27,6 +27,7 @@ function Collection({ id }) {
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BagCard from "./BagCard.jsx";
+import Carroussel from "./Carroussel.jsx";
 
 function Collection({ id }) {
   const [collection, setCollection] = useState(null);
@@ -63,9 +64,9 @@ function Collection({ id }) {
       </div>
       <div className="collapse-content">
         <div className="flex flex-wrap">
-          {collection.bags.map((sac, index) => (
+          <Carroussel  elements={collection.bags.map((sac, index) => (
             <BagCard key={index} sac={sac} />
-          ))}
+          ))}></Carroussel>
         </div>
       </div>
     </div>
