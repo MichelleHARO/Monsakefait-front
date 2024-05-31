@@ -15,7 +15,7 @@ const BagCard = ({ sac }) => {
         try {
             const response = await axiosInstance.post(`http://localhost:3001/api/me/bag/${id}`);
             console.log("Server response :", response.data)
-            const newToken =  response.data.newToken;
+            const newToken = response.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);
                 console.log('Token updated in localStorage')
@@ -26,7 +26,7 @@ const BagCard = ({ sac }) => {
     };
 
     return (
-        <div className="card card-compact w-96 bg-base-100 shadow-xl m-2">
+        <div className="card card-compact w-96 bg-secondary shadow-xl m-2">
             <figure className="p-12 w-auto">
                 <img src="https://i.ibb.co/VqP4txN/bagvanillanoir.png" alt="Shoes" className="w-1/5" />
             </figure>

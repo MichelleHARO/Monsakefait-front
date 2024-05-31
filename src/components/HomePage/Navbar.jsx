@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect } from 'react';
 import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
 import Logout from '../LoginPage/Logout.jsx';
 import { Link } from 'react-router-dom';
@@ -11,34 +11,32 @@ const Navbar = () => {
         const fetchUserInfo = async () => {
             try {
                 const response = await axiosInstance.get('http://localhost:3001/api/me/info');
-                //console.log(response.data)
-                setUserEmail(response.data)
+                setUserEmail(response.data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         };
 
         fetchUserInfo();
-    }, [])
-    
+    }, []);
 
     return (
         <div>
-            <div className="navbar bg-primary text-primary-content rounded-lg">
+            <div className="navbar bg-base-100 text-primary-content rounded-lg h-20 shadow-lg">
                 <div className="flex-1">
-                    <a className="btn btn-ghost text-xl">Monsakefait</a>
+                    <img src='../src/assets/Logov2.svg' alt="Logo" className="h-16 pl-6" />
                 </div>
                 <div className="flex-none">
                     <label htmlFor="my-drawer-4" className="btn btn-ghost btn-circle drawer-button">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                         </svg>
                     </label>
                 </div>
             </div>
 
             <div className="drawer z-20 drawer-end">
-                <input id="my-drawer-4" type="checkbox" className="drawer-toggle"/>
+                <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Page content here */}
                 </div>
@@ -62,8 +60,8 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li className="mb-4"><Link to='/logout'>Se déconnecter</Link></li>
-                        <hr className="my-4 border-1 border-gray-300"/>
-                        <DrawerContent/>
+                        <hr className="my-4 border-1 border-gray-300" />
+                        <DrawerContent />
                     </ul>
                 </div>
             </div>
