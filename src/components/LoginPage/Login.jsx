@@ -2,6 +2,7 @@
 // FORMULAIRE DE CONNEXION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const Login = ({ onChange, onSubmit }) => {
         password: '',
         token: '',
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,7 +37,6 @@ const Login = ({ onChange, onSubmit }) => {
 
             if (!response.ok) {
                 throw new Error('Error logging in');
-
             }
 
             const data = await response.json();
@@ -43,6 +45,8 @@ const Login = ({ onChange, onSubmit }) => {
             localStorage.setItem('token', token);
             console.log('Login successful. Token :', token);
             // Handle successful login (e.g., redirect, store token, etc.)
+            // If login successful, redirect to the home page
+            navigate('/homepage')
         } catch (error) {
             console.error('Error during login:', error);
             // Handle error during login (e.g., network error)
@@ -78,6 +82,7 @@ const Login = ({ onChange, onSubmit }) => {
                 </label>
             </div>
             <button type="submit" className="btn btn-primary w-full">Log In</button>
+            
         </form>
     );
 };

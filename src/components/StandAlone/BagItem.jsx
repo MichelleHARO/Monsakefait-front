@@ -3,7 +3,7 @@ import React from "react";
 // eslint-disable-next-line react/prop-types
 const BagItem = ({ item, handleDelete }) => {
     // eslint-disable-next-line react/prop-types
-    const { name } = item;
+    const { name, bag_contains_item } = item;
 
     return (
         <div className="flex items-center w-full">
@@ -12,7 +12,7 @@ const BagItem = ({ item, handleDelete }) => {
                 onClick={handleDelete}
                 className="btn btn-sm flex justify-between items-center w-full"
             >
-                <span className="mr-1">{name}</span>
+                <span className="mr-1">{name} : x{bag_contains_item.quantity}</span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6 text-red-500"

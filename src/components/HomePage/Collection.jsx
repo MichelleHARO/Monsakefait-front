@@ -4,6 +4,7 @@ import BagCard from "./BagCard.jsx";
 import Carroussel from "./Carroussel.jsx";
 //import Slider from "./Slider.jsx";
 
+
 function Collection({ id }) {
   const [collection, setCollection] = useState(null);
   const [error, setError] = useState(null);

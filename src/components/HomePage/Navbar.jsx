@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
+import Logout from '../LoginPage/Logout.jsx';
+import { Link } from 'react-router-dom';
+import axiosInstance from '../StandAlone/axiosInstance.jsx';
 
 const Navbar = () => {
-    const userEmail = "prout@prout.prout";
+    const [userEmail, setUserEmail] = useState('prout@prout.prout');
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            try {
+                const response = await axiosInstance.get('http://localhost:3001/api/me/info');
+                //console.log(response.data)
+                setUserEmail(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
+        fetchUserInfo();
+    }, [])
+    
 
     return (
         <div>
@@ -43,7 +61,7 @@ const Navbar = () => {
                                 <span className="text-sm">{userEmail}</span>
                             </a>
                         </li>
-                        <li className="mb-4"><a>Se déconnecter</a></li>
+                        <li className="mb-4"><Link to='/logout'>Se déconnecter</Link></li>
                         <hr className="my-4 border-1 border-gray-300"/>
                         <DrawerContent/>
                     </ul>
