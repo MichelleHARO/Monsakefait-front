@@ -1,8 +1,11 @@
 //Instance axios pour passage sur les routes API qui nécessitent le token 
 import axios from 'axios';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
+
+const apiUrl = useApiUrl();
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3001/api',
+    baseURL: `${apiUrl}/api`,
     headers: {
         'Content-Type': 'application/json'
     }

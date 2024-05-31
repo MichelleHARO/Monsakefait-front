@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import MonsakButton from './MonsakButton.jsx';
 import MonsakAccordion from "./MonsakAccordion.jsx";
 import axiosInstance from '../StandAlone/axiosInstance.jsx';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
+
+const apiUrl = useApiUrl();
 
 const DrawerContent = () => {
     const [openBagAccordion, setOpenBagAccordion] = useState(1);
@@ -10,7 +13,7 @@ const DrawerContent = () => {
 
     const fetchMonsakArray = async () => {
         try {
-            const response = await axiosInstance.get('http://localhost:3001/api/me/bag');
+            const response = await axiosInstance.get(`${apiUrl}/api/me/bag`);
             setMessak(response.data);
         } catch (error) {
             console.error("Error fetching data: ", error)

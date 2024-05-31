@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import axiosInstance from '../StandAlone/axiosInstance';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 // eslint-disable-next-line react/prop-types
 const MonsakButton = ({id, setOpenBagAccordion}) => {
@@ -8,11 +9,13 @@ const MonsakButton = ({id, setOpenBagAccordion}) => {
         setOpenBagAccordion(id);
     };
 
+    const apiUrl = useApiUrl();
+
     const handleBagDelete = async (id) => {
         console.log("Deleting item with id:", id);
         
         try {
-            const responseDelete = await axiosInstance.delete(`http://localhost:3001/api/me/bag/${id}`);
+            const responseDelete = await axiosInstance.delete(`${apiUrl}/api/me/bag/${id}`);
             console.log("Server response :", responseDelete.data)
             const newToken = responseDelete.data.newToken;
             if (newToken) {

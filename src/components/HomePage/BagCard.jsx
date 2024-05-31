@@ -1,6 +1,9 @@
 import React from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import axiosInstance from '../StandAlone/axiosInstance';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
+
+const apiUrl = useApiUrl();
 
 const BagCard = ({ sac }) => {
     if (!sac) {
@@ -13,7 +16,7 @@ const BagCard = ({ sac }) => {
     const handleAddToMonsak = async () => {
         //console.log('bag Id : ', id);
         try {
-            const response = await axiosInstance.post(`http://localhost:3001/api/me/bag/${id}`);
+            const response = await axiosInstance.post(`${apiUrl}/api/me/bag/${id}`);
             console.log("Server response :", response.data)
             const newToken =  response.data.newToken;
             if (newToken) {

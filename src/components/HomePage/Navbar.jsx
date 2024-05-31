@@ -3,6 +3,9 @@ import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
 import Logout from '../LoginPage/Logout.jsx';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../StandAlone/axiosInstance.jsx';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
+
+const apiUrl = useApiUrl();
 
 const Navbar = () => {
     const [userEmail, setUserEmail] = useState('prout@prout.prout');
@@ -10,7 +13,7 @@ const Navbar = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const response = await axiosInstance.get('http://localhost:3001/api/me/info');
+                const response = await axiosInstance.get(`${apiUrl}/api/me/info`);
                 //console.log(response.data)
                 setUserEmail(response.data)
             } catch (error) {
