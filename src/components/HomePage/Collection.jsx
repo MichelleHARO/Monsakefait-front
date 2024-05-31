@@ -32,7 +32,7 @@
       }
 
       return (
-          <div className="main-content shadow-inner">
+          <div className="main-content">
         <div className="collapse collapse-plus bg-base-100 pt-6 mt-6 shadow-inner">
           <input type="radio" name="my-accordion-3" defaultChecked />
           <div className="collapse-title text-xl font-medium font-display text-with-shadow">

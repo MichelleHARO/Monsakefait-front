@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
-import Logout from '../LoginPage/Logout.jsx';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../StandAlone/axiosInstance.jsx';
+import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
 
 const Navbar = () => {
     const [userEmail, setUserEmail] = useState('prout@prout.prout');
@@ -42,25 +41,24 @@ const Navbar = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-3/4 min-h-full bg-base-200 text-base-content">
+                    <ul className="menu p-4 w-3/4 min-h-full bg-base-200 text-base-content rounded-lg shadow-inner">
                         {/* Sidebar content here */}
-                        <li className="mb-4">
-                            <a className="flex items-center">
-                                <img
-                                    alt="User avatar"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                                    className="w-6 h-6 rounded-full mr-2"
-                                />
-                                <span>Monsak</span>
-                            </a>
+                        <li className="mb-4 flex items-center justify-between">
+                            <label htmlFor="my-drawer-4" className="btn btn-ghost btn-circle drawer-button ml-auto mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-6 w-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                </svg>
+                            </label>
                         </li>
                         <li className="mb-4">
-                            <a>
-                                <span className="text-sm">{userEmail}</span>
-                            </a>
+                            <span className="font-bold justify-center size">{userEmail}</span>
                         </li>
-                        <li className="mb-4"><Link to='/logout'>Se déconnecter</Link></li>
-                        <hr className="my-4 border-1 border-gray-300" />
+                        <li className="mb-4">
+                            <Link to='/logout' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg font-display font-light btn-accent">
+                                Se déconnecter
+                            </Link>
+                        </li>
+                        <hr className="my-4 border-1 border-black" />
                         <DrawerContent />
                     </ul>
                 </div>
