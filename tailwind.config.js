@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['Katahdin Round', 'sans-serif'],
+      },
       colors: {
         brightOrange: '#FF9F1C',
         lightOrange: '#FFBF69',
@@ -25,7 +28,7 @@ export default {
           'secondary': '#FFBF69',
           'accent': '#CB997E',
           'neutral': '#3D4451',
-          'base-100': '#FFFFFF',
+          'base-100': '#FFE8D6',
           'info': '#2094F3',
           'success': '#009485',
           'warning': '#FF9900',
