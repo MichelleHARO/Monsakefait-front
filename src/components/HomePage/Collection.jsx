@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BagCard from "./BagCard.jsx";
 
+
 function Collection({ id }) {
   const [collection, setCollection] = useState(null);
   const [error, setError] = useState(null);
