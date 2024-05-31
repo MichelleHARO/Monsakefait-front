@@ -21,8 +21,8 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div>
-            <div className="navbar bg-base-100 text-primary-content rounded-lg h-20 shadow-lg">
+        <div className="navbar-fixed navbar-container mx-4">
+            <div className="navbar bg-base-100 text-primary-content rounded-b-lg h-20 shadow-lg">
                 <div className="flex-1">
                     <img src='../src/assets/Logov2.svg' alt="Logo" className="h-16 pl-6" />
                 </div>

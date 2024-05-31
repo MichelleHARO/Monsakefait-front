@@ -1,6 +1,7 @@
 import React from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import axiosInstance from '../StandAlone/axiosInstance';
+import '../../index.css';
 
 const BagCard = ({ sac }) => {
     if (!sac) {
@@ -26,13 +27,13 @@ const BagCard = ({ sac }) => {
     };
 
     return (
-        <div className="card card-compact w-96 bg-secondary shadow-xl m-2">
-            <figure className="p-12 w-auto">
+        <div className="card card-compact w-96 bg-secondary shadow-xl m-2 card-background">
+            <figure className="pt-7 w-full">
                 <img src="https://i.ibb.co/VqP4txN/bagvanillanoir.png" alt="Shoes" className="w-1/5" />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">{name}</h2>
-                <p>{description}</p>
+                <h2 className="card-title justify-center">{name}</h2>
+                <p className="mb-1">{description}</p>
                 {items && items.length > 0 ? (
                     <ul>
                         {items.map((item, index) => (
@@ -44,7 +45,7 @@ const BagCard = ({ sac }) => {
                 )}
                 <div className="card-actions justify-center">
                     <button
-                        className="btn btn-primary flex items-center"
+                        className="btn btn-primary flex items-center shadow-inner"
                         onClick={handleAddToMonsak}
                     >
                         <PlusIcon className="h-5 w-5 mr-2" />
