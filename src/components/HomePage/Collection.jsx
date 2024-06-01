@@ -11,7 +11,7 @@ function Collection({ id }) {
   useEffect(() => {
     const fetchCollection = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/collections/${id}`);
+        const response = await axios.get(`${apiUrl}/api/collection/${id}`);
         console.log("Data fetched:", response.data);
         setCollection(response.data);
       } catch (error) {
