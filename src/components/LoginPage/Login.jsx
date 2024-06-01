@@ -1,9 +1,8 @@
 // components/Login.jsx
-// FORMULAIRE DE CONNEXION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
-
 import React, { useState } from 'react';
-import { useApiUrl} from "../../context/ApiUrlContext.jsx";
+import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../StandAlone/axiosInstance.jsx';
 
 const Login = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -13,6 +12,7 @@ const Login = ({ onChange, onSubmit }) => {
     });
 
     const navigate = useNavigate();
+    const apiUrl = useApiUrl();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,33 +22,29 @@ const Login = ({ onChange, onSubmit }) => {
         });
         if (onChange) onChange(formData);
     };
-    const apiUrl = useApiUrl();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch(`${apiUrl}/api/user/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: formData.email, password: formData.password })
+            const response = await axiosInstance.post('/user/login', {
+                email: formData.email,
+                password: formData.password
             });
 
-            if (!response.ok) {
-                throw new Error('Error logging in');
+            if (response.status === 200) {
+                const data = await response.data;
+                const { token } = data;
+                setFormData({ ...formData, token });
+                localStorage.setItem('token', token);
+                console.log('Login successful. Token:', token);
+                // Handle successful login (e.g., redirect, store token, etc.)
+                navigate('/homepage');
+            } else {
+                console.error('Login failed:', response.statusText);
+                // Handle login failure (e.g., show error message)
             }
-
-            const data = await response.json();
-            const { token } = data;
-            setFormData({ ...formData, token });
-            localStorage.setItem('token', token);
-            console.log('Login successful. Token :', token);
-            // Handle successful login (e.g., redirect, store token, etc.)
-            // If login successful, redirect to the home page
-            navigate('/homepage')
         } catch (error) {
             console.error('Error during login:', error);
             // Handle error during login (e.g., network error)
@@ -84,10 +80,8 @@ const Login = ({ onChange, onSubmit }) => {
                 </label>
             </div>
             <button type="submit" className="btn btn-primary w-full">Log In</button>
-
         </form>
     );
 };
 
 export default Login;
-

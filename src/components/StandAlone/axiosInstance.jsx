@@ -1,8 +1,9 @@
-//Instance axios pour passage sur les routes API qui nécessitent le token 
+// axiosInstance.js
 import axios from 'axios';
-import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
-const apiUrl = useApiUrl();
+// Use Vite environment variable
+const apiUrl = import.meta.env.VITE_API_URL;
+console.log('API URL:', apiUrl);
 
 const axiosInstance = axios.create({
     baseURL: `${apiUrl}/api`,
@@ -16,7 +17,6 @@ axiosInstance.interceptors.request.use(
     config => {
         const token = localStorage.getItem('token');
         if (token) {
-            //console.log('Token:', token);
             config.headers['Authorization'] = `Bearer ${token}`;
         }
         return config;
