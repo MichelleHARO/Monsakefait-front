@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useApiUrl} from "../../context/ApiUrlContext.jsx";
+import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../StandAlone/axiosInstance.jsx';
 
 const SignUp = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,9 @@ const SignUp = ({ onChange, onSubmit }) => {
     });
     const [error, setError] = useState('');
     const apiUrl = useApiUrl();
+
+    // Log the apiUrl value
+    console.log(apiUrl);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -35,16 +39,14 @@ const SignUp = ({ onChange, onSubmit }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch(`${apiUrl}/api/user/signup`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword })
+            const response = await axiosInstance.post('/user/signup', {
+                email: formData.email,
+                password: formData.password,
+                confirmPassword: formData.confirmPassword
             });
 
-            if (response.ok) {
-                const data = await response.json();
+            if (response.status === 200) {
+                const data = await response.data;
                 console.log('Sign up successful:', data);
                 // Handle successful sign up (e.g., redirect, show success message, etc.)
                 navigate('/login');
