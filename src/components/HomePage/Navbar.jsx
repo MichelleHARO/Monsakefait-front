@@ -23,12 +23,12 @@ const Navbar = () => {
 
     return (
         <div className="navbar-fixed navbar-container mx-4">
-            <div className="navbar bg-base-100 text-primary-content rounded-b-lg h-20 shadow-lg">
-                <div className="flex-1">
+            <div className="navbar bg-base-100 text-primary-content dark:bg-base-100 dark:text-base-100 rounded-b-lg h-20 shadow-lg flex justify-between items-center">
+                <div className="flex items-center">
                     <img src='../src/assets/Logov2.svg' alt="Logo" className="h-16 pl-6" />
                 </div>
-                <div className="flex-none">
-                    <Switcher/>
+                <div className="flex items-center space-x-4">
+                    <Switcher /> {/* Intégration du Switcher */}
                     <label htmlFor="my-drawer-4" className="btn btn-ghost btn-circle drawer-button">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -44,7 +44,7 @@ const Navbar = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-3/4 min-h-full bg-base-200 text-base-content rounded-lg shadow-inner">
+                    <ul className="menu p-4 w-3/4 min-h-full bg-base-200 dark:bg-base-200 dark:text-base-100 rounded-lg shadow-inner">
                         {/* Sidebar content here */}
                         <li className="mb-4 flex items-center justify-between">
                             <label htmlFor="my-drawer-4" className="btn btn-ghost btn-circle drawer-button ml-auto mr-4">

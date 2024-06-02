@@ -4,7 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
+  darkMode: 'class', // Utiliser les classes pour le mode sombre
   theme: {
     extend: {
       fontFamily: {
@@ -24,7 +24,7 @@ export default {
   daisyui: {
     themes: [
       {
-        mytheme: {
+        light: {
           'primary': '#FF9F1C',
           'secondary': '#FFBF69',
           'accent': '#CB997E',
@@ -36,7 +36,19 @@ export default {
           'error': '#FF5724',
         },
       },
-      "dark",
+      {
+        dark: {
+          'primary': '#635985',
+          'secondary': '#443C68',
+          'accent': '#393053',
+          'neutral': '#1F2937', // Un ton plus sombre pour le mode sombre
+          'base-100': '#18122B', // Fond sombre
+          'info': '#2094F3',
+          'success': '#009485',
+          'warning': '#FF9900',
+          'error': '#FF5724',
+        },
+      },
       "cupcake",
     ],
   },
