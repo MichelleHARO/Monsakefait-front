@@ -10,7 +10,7 @@ const MonsakButton = ({id, setOpenBagAccordion}) => {
 
     const handleBagDelete = async (id) => {
         console.log("Deleting item with id:", id);
-        
+
         try {
             const responseDelete = await axiosInstance.delete(`http://localhost:3001/api/me/bag/${id}`);
             console.log("Server response :", responseDelete.data)
@@ -36,7 +36,7 @@ const MonsakButton = ({id, setOpenBagAccordion}) => {
                 onClick={() => handleClick(id)}
             >
     <span className="font-display font-light text-center">
-      Monsak : <span className="text-base-200 font-display text-outline text-shadow-lg">{id}</span>
+      Monsak  <span className="text-base-200 font-display text-outline text-shadow-lg">{id}</span>
     </span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

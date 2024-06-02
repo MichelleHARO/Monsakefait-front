@@ -1,10 +1,11 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class', // Utiliser les classes pour le mode sombre
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -41,8 +42,8 @@ export default {
           'primary': '#635985',
           'secondary': '#443C68',
           'accent': '#393053',
-          'neutral': '#1F2937', // Un ton plus sombre pour le mode sombre
-          'base-100': '#18122B', // Fond sombre
+          'neutral': '#1F2937',
+          'base-100': '#18122B',
           'info': '#2094F3',
           'success': '#009485',
           'warning': '#FF9900',
