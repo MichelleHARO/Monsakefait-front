@@ -39,4 +39,10 @@ export default {
       "cupcake",
     ],
   },
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+      cursor: ['disabled'],
+    },
+  },
 }
