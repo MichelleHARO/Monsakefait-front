@@ -31,13 +31,13 @@ const MonsakButton = ({id, setOpenBagAccordion}) => {
 
     return (<div>
             <button
+                type="button"
+                className="btn btn-active btn-secondary flex items-center justify-center shadow-xl mb-4"
                 onClick={() => handleClick(id)}
-                className="btn btn-outline btn-primary flex items-center justify-between"
-                style={{borderColor: 'black', color: 'black'}}
             >
-                <span>
-                    Monsak : <span className="text-primary" style={{color: 'blue'}}>{id}</span>
-                </span>
+    <span className="font-display font-light text-center">
+      Monsak : <span className="text-base-200 font-display text-outline text-shadow-lg">{id}</span>
+    </span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -45,19 +45,17 @@ const MonsakButton = ({id, setOpenBagAccordion}) => {
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className="h-5 w-5 text-red-500 ml-2"
+                    style={{stroke: 'black', strokeWidth: '2px'}}
                     onClick={(e) => {
                         e.stopPropagation();
                         handleBagDelete(id);
                     }}
                 >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
-        </div>);
+        </div>
+    );
 }
 
 export default MonsakButton;

@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const BagItem = ({ item, handleDelete }) => {
     // eslint-disable-next-line react/prop-types
     const { name, bag_contains_item } = item;
+    const [isChecked, setIsChecked] = useState(false); // Initialisez avec false pour ne pas être coché par défaut
+
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+    };
 
     return (
         <div className="flex items-center w-full">
-            <input type="checkbox" defaultChecked className="checkbox mr-2" />
+            <input
+                type="checkbox"
+                className="checkbox mr-2"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+            />
             <button
                 onClick={handleDelete}
                 className="btn btn-sm flex justify-between items-center w-full"

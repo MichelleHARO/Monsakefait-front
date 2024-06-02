@@ -18,7 +18,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
                 readOnly
             />
             <div className="collapse-title text-xl font-medium">
-                <p>Monsak {id}</p>
+                <p className="font-display">Monsak {id}</p>
             </div>
             <div className="collapse-content">
                 <p className="font-bold">{desc}</p>

@@ -51,15 +51,16 @@ const Navbar = () => {
                             </label>
                         </li>
                         <li className="mb-4">
-                            <span className="font-bold justify-center size">{userEmail}</span>
+                            <button className="btn no-animation font-bold text-2xl font-display justify-center">{userEmail}</button>
                         </li>
                         <li className="mb-4">
-                            <Link to='/logout' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg font-display font-light btn-accent">
+                            <Link to='/logout' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg font-display font-light btn-primary shadow-l">
                                 Se déconnecter
                             </Link>
                         </li>
                         <hr className="my-4 border-1 border-black" />
                         <DrawerContent />
+
                     </ul>
                 </div>
             </div>
