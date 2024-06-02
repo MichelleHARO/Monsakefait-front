@@ -82,4 +82,8 @@
             1px 1px 0 #000;
 }
 
+.transition-colors {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
 

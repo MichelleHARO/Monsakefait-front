@@ -9,7 +9,8 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
         console.log("click");
     };
 
-    const [isButtonClicked, setIsButtonClicked] = useState(false);
+    // Initialisez à true pour que le bouton soit transparent par défaut
+    const [isButtonClicked, setIsButtonClicked] = useState(true);
 
     const handleButtonClick = () => {
         setIsButtonClicked(!isButtonClicked);
@@ -35,12 +36,16 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
                         ))}
                 </div>
                 <div className="flex justify-center mb-3">
-                <button
-                    onClick={handleButtonClick}
-                    className={`btn font-display mt-4 ${isButtonClicked ? 'bg-transparent border-gray-10 shadow-xl' : 'bg-green-500 border-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 mb-3'}`}
-                >
-                    Monsakefait !
-                </button>
+                    <button
+                        onClick={handleButtonClick}
+                        className={`btn font-display mt-4 ${
+                            isButtonClicked
+                                ? 'bg-transparent border-gray-100 shadow-xl'
+                                : 'bg-green-500 border-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 mb-3'
+                        }`}
+                    >
+                        Monsakefait !
+                    </button>
                 </div>
             </div>
         </div>

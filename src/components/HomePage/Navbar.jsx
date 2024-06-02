@@ -1,7 +1,9 @@
+// src/components/HomePage/Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../StandAlone/axiosInstance.jsx';
 import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
+import Switcher from "../StandAlone/Switcher.jsx"; // Assurez-vous que le chemin est correct
 
 const Navbar = () => {
     const [userEmail, setUserEmail] = useState('prout@prout.prout');
@@ -26,6 +28,7 @@ const Navbar = () => {
                     <img src='../src/assets/Logov2.svg' alt="Logo" className="h-16 pl-6" />
                 </div>
                 <div className="flex-none">
+                    <Switcher/>
                     <label htmlFor="my-drawer-4" className="btn btn-ghost btn-circle drawer-button">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -60,7 +63,6 @@ const Navbar = () => {
                         </li>
                         <hr className="my-4 border-1 border-black" />
                         <DrawerContent />
-
                     </ul>
                 </div>
             </div>
