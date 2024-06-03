@@ -32,8 +32,21 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
         setIsButtonClicked(!isButtonClicked);
     };
 
-    const handleAddClick = () => {
+    //handle 
+    const handleAddClick = async () => {
         console.log(selectedItem, id)
+        try {
+            const response = await axiosInstance.post(`http://localhost:3001/api/me/item/addItem/${id}`, 
+            { selectedItem });
+            console.log("Server response :", response.data)
+            const newToken = response.data.newToken;
+            if (newToken) {
+                localStorage.setItem('token', newToken);
+                console.log('Token updated in localStorage')
+            }
+        } catch (error) {
+            console.error("Error while adding Item from Monsak !", error)
+        }
     }
 
     return (
