@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import BagItem from "../StandAlone/BagItem.jsx";
 import axiosInstance from "../StandAlone/axiosInstance.jsx";
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
+
 
 // eslint-disable-next-line react/prop-types
 const MonsakAccordion = ({ monsak, openBagAccordion }) => {
@@ -12,10 +14,12 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [allItems, setAllItems] = useState([]);
 
+    const apiUrl = useApiUrl();
+
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await axiosInstance.get('http://localhost:3001/api/me/item')
+                const response = await axiosInstance.get(`${apiUrl}/api/me/item`)
                 setAllItems(response.data)
             }catch(error){
                 console.error("Error fetching collection", error)
@@ -36,7 +40,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
     const handleAddClick = async () => {
         console.log(selectedItem, id)
         try {
-            const response = await axiosInstance.post(`http://localhost:3001/api/me/item/addItem/${id}`, 
+            const response = await axiosInstance.post(`${apiUrl}/api/me/item/addItem/${id}`,
             { selectedItem });
             console.log("Server response :", response.data)
             const newToken = response.data.newToken;
