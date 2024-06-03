@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import BagCard from "./BagCard.jsx";
 import Carroussel from "./Carroussel.jsx";
 import '../../index.css';
 
@@ -40,10 +39,7 @@ function Collection({ id }) {
                 </div>
                 <div className="collapse-content">
                     <div className="flex flex-wrap">
-                        <Carroussel elements={collection.bags.map((sac, index) => (
-                            <BagCard key={index} sac={sac} />
-                        ))} name="carousel">
-                        </Carroussel>
+                        <Carroussel elements={collection.bags} />
                     </div>
                 </div>
             </div>
