@@ -41,7 +41,7 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
             const { token } = data;
             setFormData({ ...formData, token });
             localStorage.setItem('token', token);
-            console.log('Login successful. Token :', token);
+            //console.log('Login successful. Token :', token);
             navigate('/homepage');
         } catch (error) {
             console.error('Error during login:', error);

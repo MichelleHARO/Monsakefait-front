@@ -14,7 +14,7 @@ const BagCard = ({ sac }) => {
     const handleAddToMonsak = async () => {
         try {
             const response = await axiosInstance.post(`http://localhost:3001/api/me/bag/${id}`);
-            console.log("Server response :", response.data);
+            //console.log("Server response :", response.data);
             const newToken = response.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);

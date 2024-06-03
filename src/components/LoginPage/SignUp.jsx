@@ -14,7 +14,7 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
     const apiUrl = useApiUrl();
 
     // Log the apiUrl value
-    console.log(apiUrl);
+    //console.log(apiUrl);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -50,7 +50,7 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
 
             if (response.status === 200) {
                 const data = await response.data;
-                console.log('Sign up successful:', data);
+                //console.log('Sign up successful:', data);
                 navigate('/login');
             } else {
                 console.error('Sign up failed:', response.statusText);

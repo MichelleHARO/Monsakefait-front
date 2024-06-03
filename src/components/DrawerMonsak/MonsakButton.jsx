@@ -15,7 +15,7 @@ const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
 
         try {
             const responseDelete = await axiosInstance.delete(`http://localhost:3001/api/me/bag/${id}`);
-            console.log("Server response :", responseDelete.data);
+            //console.log("Server response :", responseDelete.data);
 
             const newToken = responseDelete.data.newToken;
             if (newToken) {

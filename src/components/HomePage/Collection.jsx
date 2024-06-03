@@ -11,7 +11,7 @@ function Collection({ id }) {
         const fetchCollection = async () => {
             try {
                 const response = await axios.get(`http://localhost:3001/api/collection/${id}`);
-                console.log("Data fetched:", response.data);
+                //console.log("Data fetched:", response.data);
                 setCollection(response.data);
             } catch (error) {
                 console.error("Error fetching collection", error);
