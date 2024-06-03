@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BagItem from "../StandAlone/BagItem.jsx";
+import axiosInstance from "../StandAlone/axiosInstance.jsx";
 
 // eslint-disable-next-line react/prop-types
 const MonsakAccordion = ({ monsak, openBagAccordion }) => {
     // eslint-disable-next-line react/prop-types
     const { id, name, image, description, items } = monsak;
 
-    // Initialisez à true pour que le bouton soit transparent par défaut
+    // Initialiser à true pour que le bouton soit transparent par défaut
     const [isButtonClicked, setIsButtonClicked] = useState(true);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [allItems, setAllItems] = useState([]);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const response = await axiosInstance.get('http://localhost:3001/api/me/item')
+                setAllItems(response.data)
+            }catch(error){
+                console.error("Error fetching collection", error)
+            }
+        };
+        fetchItems();
+    }, [])
+
+    const handleChange = (event) => {
+        setSelectedItem(event.target.value);
+    };
 
     const handleButtonClick = () => {
         setIsButtonClicked(!isButtonClicked);
     };
+
+    const handleAddClick = () => {
+        console.log(selectedItem, id)
+    }
 
     return (
         <div className="collapse collapse-arrow bg-base-200">
@@ -31,6 +54,22 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
                         items.map((item, index) => (
                             <BagItem key={index} item={item} />
                         ))}
+                </div>
+                <div className="flex justify-center mb-3">
+                    <select 
+                        value={selectedItem} 
+                        onChange={handleChange}
+                        className="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Ajouter un objet à Monsak {id}</option>
+                        {allItems && allItems.map((item) => (
+                            <option key={item.id} value={item.id}>{item.name}</option>
+                        ))}                        
+                    </select>
+                    <button
+                        onClick={handleAddClick}
+                        className="btn font-display mt-4 bg-transparent border-gray-100 shadow-xl">
+                        Ajouter objet !
+                    </button>
                 </div>
                 <div className="flex justify-center mb-3">
                     <button
