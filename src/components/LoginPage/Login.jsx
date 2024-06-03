@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useApiUrl } from "../../context/ApiUrlContext.jsx";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import '../../index.css';
 
 const Login = ({ onChange, onSubmit, onToggle }) => {
@@ -11,7 +10,6 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
     });
 
     const navigate = useNavigate();
-    const apiUrl = useApiUrl();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,23 +25,18 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await axiosInstance.post('/user/login', {
-                email: formData.email,
-                password: formData.password
+            const response = await fetch('http://localhost:3001/api/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: formData.email, password: formData.password })
             });
 
-            if (response.status === 200) {
-                const data = await response.data;
-                const { token } = data;
-                setFormData({ ...formData, token });
-                localStorage.setItem('token', token);
-                console.log('Login successful. Token:', token);
-                // Handle successful login (e.g., redirect, store token, etc.)
-                navigate('/homepage');
-            } else {
-                console.error('Login failed:', response.statusText);
-                // Handle login failure (e.g., show error message)
+            if (!response.ok) {
+                throw new Error('Error logging in');
             }
+
             const data = await response.json();
             const { token } = data;
             setFormData({ ...formData, token });
@@ -107,7 +100,6 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
                 </div>
             </div>
         </div>
-
     );
 };
 

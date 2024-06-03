@@ -42,7 +42,7 @@ function Collection({ id }) {
                     <div className="flex flex-wrap">
                         <Carroussel elements={collection.bags.map((sac, index) => (
                             <BagCard key={index} sac={sac} />
-                        ))}>
+                        ))} name="carousel">
                         </Carroussel>
                     </div>
                 </div>

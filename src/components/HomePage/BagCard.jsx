@@ -5,8 +5,6 @@ import '../../index.css';
 
 
 const BagCard = ({ sac }) => {
-    const apiUrl = useApiUrl(); // Use the hook inside the component
-
     if (!sac) {
         return <div>Sac non trouvé</div>;
     }
