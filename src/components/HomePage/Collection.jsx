@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carroussel from "./Carroussel.jsx";
 import '../../index.css';
+import {useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 function Collection({ id }) {
     const [collection, setCollection] = useState(null);
     const [error, setError] = useState(null);
 
+    const apiUrl = useApiUrl();
+
+
     useEffect(() => {
         const fetchCollection = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/api/collection/${id}`);
+                const response = await axios.get(`${apiUrl}/api/collection/${id}`);
                 console.log("Data fetched:", response.data);
                 setCollection(response.data);
             } catch (error) {

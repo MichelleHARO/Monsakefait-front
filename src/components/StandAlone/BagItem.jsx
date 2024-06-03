@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "./axiosInstance";
-
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 // eslint-disable-next-line react/prop-types
 const BagItem = ({ item }) => {
@@ -11,11 +11,13 @@ const BagItem = ({ item }) => {
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
     };
-    
+
+    const apiUrl = useApiUrl();
+
     const handleAddQuantity = async () => {
         //console.log("click", id, bag_contains_item );
         try {
-            const response = await axiosInstance.post(`http://localhost:3001/api/me/item/addQuantity/${id}`, { bag_contains_item });
+            const response = await axiosInstance.post(`${apiUrl}/api/me/item/addQuantity/${id}`, { bag_contains_item });
             console.log("Server response :", response.data)
             const newToken = response.data.newToken;
             if (newToken) {
@@ -30,7 +32,7 @@ const BagItem = ({ item }) => {
     const handleRemoveQuantity = async () => {
         console.log("click", id, bag_contains_item );
         try {
-        const response = await axiosInstance.delete(`http://localhost:3001/api/me/item/removeQuantity/${id}`, { params: { bag_contains_item }});
+        const response = await axiosInstance.delete(`${apiUrl}/api/me/item/removeQuantity/${id}`, { params: { bag_contains_item }});
         console.log("Server response :", response.data)
         const newToken = response.data.newToken;
         if (newToken) {
@@ -45,7 +47,7 @@ const BagItem = ({ item }) => {
     const handleDeleteItem = async () => {
         console.log("click", id, bag_contains_item );
         try {
-            const response = await axiosInstance.delete(`http://localhost:3001/api/me/item/removeItem/${id}`, 
+            const response = await axiosInstance.delete(`${apiUrl}/api/me/item/removeItem/${id}`,
             // ajout de { params: {} } pour envoyer bag_contains_item dans la requête .delete
             { params: { bag_contains_item }});
             console.log("Server response :", response.data)
