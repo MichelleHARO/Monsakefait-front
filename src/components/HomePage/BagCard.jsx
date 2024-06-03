@@ -1,8 +1,11 @@
 import React from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import axiosInstance from '../StandAlone/axiosInstance';
+import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 
 const BagCard = ({ sac }) => {
+    const apiUrl = useApiUrl(); // Use the hook inside the component
+
     if (!sac) {
         return <div>Sac non trouvé</div>;
     }
@@ -11,17 +14,16 @@ const BagCard = ({ sac }) => {
 
     // Fonction pour gérer l'ajout à Monsak
     const handleAddToMonsak = async () => {
-        //console.log('bag Id : ', id);
         try {
-            const response = await axiosInstance.post(`http://localhost:3001/api/me/bag/${id}`);
-            console.log("Server response :", response.data)
-            const newToken =  response.data.newToken;
+            const response = await axiosInstance.post(`${apiUrl}/api/me/bag/${id}`);
+            console.log("Server response :", response.data);
+            const newToken = response.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);
-                console.log('Token updated in localStorage')
+                console.log('Token updated in localStorage');
             }
         } catch (error) {
-            console.error("Erreur while adding to Monsak !", error)
+            console.error("Erreur while adding to Monsak !", error);
         }
     };
 

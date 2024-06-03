@@ -1,10 +1,8 @@
-// components/SignUp.jsx
-// FORMULAIRE D'INSCRIPTION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
-
 import React, { useState } from 'react';
+import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../StandAlone/axiosInstance.jsx';
 
-// eslint-disable-next-line react/prop-types
 const SignUp = ({ onChange, onSubmit }) => {
     const [formData, setFormData] = useState({
         email: '',
@@ -12,6 +10,10 @@ const SignUp = ({ onChange, onSubmit }) => {
         confirmPassword: '',
     });
     const [error, setError] = useState('');
+    const apiUrl = useApiUrl();
+
+    // Log the apiUrl value
+    console.log(apiUrl);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -37,16 +39,14 @@ const SignUp = ({ onChange, onSubmit }) => {
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://localhost:3001/api/user/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword }) //pour n'envoyer que les champs qui nous intéressent au back de formData (pas le token donc) et éviter retour erreur car "all fields required"
+            const response = await axiosInstance.post('/user/signup', {
+                email: formData.email,
+                password: formData.password,
+                confirmPassword: formData.confirmPassword
             });
 
-            if (response.ok) {
-                const data = await response.json();
+            if (response.status === 200) {
+                const data = await response.data;
                 console.log('Sign up successful:', data);
                 // Handle successful sign up (e.g., redirect, show success message, etc.)
                 navigate('/login');
