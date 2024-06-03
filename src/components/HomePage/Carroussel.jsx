@@ -14,7 +14,6 @@ function Carroussel({ elements }) {
 
     return (
         <div className="carousel w-full">
-
             {elements.map((element, index) => (
                 <div id={"slide" + index} key={index} className={`carousel-item relative w-full ${index === currentIndex ? 'block' : 'hidden'}`}>
                     <BagCard sac={element} />
@@ -31,6 +30,7 @@ function Carroussel({ elements }) {
                         >❯</a>
                     </div>
                 </div>
+
             ))}
         </div>
     );
