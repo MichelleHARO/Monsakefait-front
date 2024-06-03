@@ -1,10 +1,8 @@
-// components/Login.jsx
-// FORMULAIRE DE CONNEXION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../../index.css';
 
-const Login = ({ onChange, onSubmit }) => {
+const Login = ({ onChange, onSubmit, onToggle }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -44,48 +42,65 @@ const Login = ({ onChange, onSubmit }) => {
             setFormData({ ...formData, token });
             localStorage.setItem('token', token);
             console.log('Login successful. Token :', token);
-            // Handle successful login (e.g., redirect, store token, etc.)
-            // If login successful, redirect to the home page
-            navigate('/homepage')
+            navigate('/homepage');
         } catch (error) {
             console.error('Error during login:', error);
-            // Handle error during login (e.g., network error)
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
-            <div className="mb-4">
-                <label className="input input-bordered flex items-center gap-2">
-                    Email
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="grow"
-                        placeholder="daisy@site.com"
-                    />
-                </label>
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="text-center lg:text-left">
+                    <h1 className="text-5xl font-bold font-display">Ah vous revoila !</h1>
+                    <p className="py-6 font-bold">
+                        Des milliers de saks vous attendaient ! On part où ?<br/><br/> À la plage, randonnée sauvage en
+                        forêt ou soirée pyjama chez Sandrine ?
+                    </p>
+                </div>
+                <div className="card shrink-0 w-full max-w-sm shadow-2xl">
+                    <form className="card-body" onSubmit={handleSubmit}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Email</span>
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="email"
+                                className="input input-bordered"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Mot de passe</span>
+                            </label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="mot de passe"
+                                className="input input-bordered"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-control mt-6">
+                            <button type="submit" className="btn btn-primary font-display font-light">Connexion</button>
+                        </div>
+                        <div className="form-control mt-4">
+                            <button type="button" onClick={onToggle} className="btn btn-secondary font-display font-light">
+                                Inscrivez-vous
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div className="mb-4">
-                <label className="input input-bordered flex items-center gap-2">
-                    Password
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        className="grow"
-                        placeholder="Mot de passe"
-                    />
-                </label>
-            </div>
-            <button type="submit" className="btn btn-primary w-full">Log In</button>
-            
-        </form>
+        </div>
     );
 };
 
 export default Login;
-

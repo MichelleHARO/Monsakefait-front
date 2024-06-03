@@ -1,3 +1,123 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Katahdin Round';
+    src: url('./assets/KatahdinRound.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+.hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/bagv2.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+.text-with-shadow {
+    text-shadow: 2px 2px 9px rgba(0, 0, 0, 0.5);
+}
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+
+.main-content {
+    padding-top: 5rem;
+
+}
+
+.card-background {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/monsakefaitnologo.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.card-body {
+    position: relative;
+    z-index: 1;
+}
+.text-outline {
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+}
+
+.transition-colors {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-button.left {
+    left: 10px;
+}
+
+.carousel-button.right {
+    right: 10px;
+}
+
+

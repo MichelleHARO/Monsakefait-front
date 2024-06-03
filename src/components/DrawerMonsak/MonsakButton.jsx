@@ -1,23 +1,26 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import axiosInstance from '../StandAlone/axiosInstance';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
-// eslint-disable-next-line react/prop-types
-const MonsakButton = ({id, setOpenBagAccordion}) => {
+const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
+
     const handleClick = (id) => {
         setOpenBagAccordion(id);
     };
 
+    const apiUrl = useApiUrl();
+
     const handleBagDelete = async (id) => {
         console.log("Deleting item with id:", id);
-        
+
         try {
             const responseDelete = await axiosInstance.delete(`http://localhost:3001/api/me/bag/${id}`);
-            console.log("Server response :", responseDelete.data)
+            console.log("Server response :", responseDelete.data);
+
             const newToken = responseDelete.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);
-                console.log('Token updated in localStorage')
+                console.log('Token updated in localStorage');
             }
         } catch (error) {
             if (error.response && error.response.status === 401) {
@@ -27,16 +30,17 @@ const MonsakButton = ({id, setOpenBagAccordion}) => {
                 console.error("Erreur while deleting from Monsak !", error);
             }
         }
-    }
+    };
 
-    return (<div>
+    return (
+        <div>
             <button
+                type="button"
+                className="btn btn-active btn-secondary flex items-center justify-center shadow-xl mb-4"
                 onClick={() => handleClick(id)}
-                className="btn btn-outline btn-primary flex items-center justify-between"
-                style={{borderColor: 'black', color: 'black'}}
             >
-                <span>
-                    Monsak : <span className="text-primary" style={{color: 'blue'}}>{id}</span>
+                <span className="font-display font-light text-center">
+                    Monsak <span className={`text-primary font-display text-outline text-shadow-lg ${theme === 'dark' ? 'text-white' : 'text-black'}`}>{id}</span>
                 </span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -45,19 +49,17 @@ const MonsakButton = ({id, setOpenBagAccordion}) => {
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className="h-5 w-5 text-red-500 ml-2"
+                    style={{ stroke: 'black', strokeWidth: '2px' }}
                     onClick={(e) => {
                         e.stopPropagation();
                         handleBagDelete(id);
                     }}
                 >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-        </div>);
-}
+        </div>
+    );
+};
 
 export default MonsakButton;

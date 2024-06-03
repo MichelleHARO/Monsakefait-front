@@ -1,17 +1,20 @@
-// components/SignUp.jsx
-// FORMULAIRE D'INSCRIPTION QUI GERE SON ETAT LOCAL ET APPELLE UNE FONCTION 'onSubmit' prop lorsqu'il est soumis.
-
 import React, { useState } from 'react';
+import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
+import '../../index.css';
 
-// eslint-disable-next-line react/prop-types
-const SignUp = ({ onChange, onSubmit }) => {
+const SignUp = ({ onChange, onSubmit, onToggle }) => {
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
         confirmPassword: '',
     });
     const [error, setError] = useState('');
+    const apiUrl = useApiUrl();
+
+    // Log the apiUrl value
+    console.log(apiUrl);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -42,68 +45,90 @@ const SignUp = ({ onChange, onSubmit }) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword }) //pour n'envoyer que les champs qui nous intéressent au back de formData (pas le token donc) et éviter retour erreur car "all fields required"
+                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword })
             });
 
-            if (response.ok) {
-                const data = await response.json();
+            if (response.status === 200) {
+                const data = await response.data;
                 console.log('Sign up successful:', data);
-                // Handle successful sign up (e.g., redirect, show success message, etc.)
                 navigate('/login');
             } else {
                 console.error('Sign up failed:', response.statusText);
-                // Handle sign up failure (e.g., show error message)
             }
         } catch (error) {
             console.error('Error during sign up:', error);
-            // Handle error during sign up (e.g., network error)
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
-            <div className="mb-4">
-                <label className="input input-bordered flex items-center gap-2">
-                    Email
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="grow"
-                        placeholder="daisy@site.com"
-                    />
-                </label>
-                {error && <p className="text-red-500">{error}</p>}
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="text-center lg:text-left">
+                    <h1 className="text-5xl font-bold font-display">Bienvenue !</h1>
+                    <p className="py-6 font-bold">
+                        Monsakefait est une plateforme de partage de sacs et un outil d'accompagnement
+                        pour la gestion et la préparation de sacs à dos.<br/><br/> Valises, sacs à main, sacs d'activité
+                        sportive ou un sac pour un événement particulier, le tout sous forme de
+                        checklists.<br/> <br /> Rejoignez-nous !
+                    </p>
+                </div>
+                <div className="card shrink-0 w-full max-w-sm shadow-2xl">
+                    <form className="card-body" onSubmit={handleSubmit}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Email</span>
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="email"
+                                className="input input-bordered"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                            {error && <p className="text-red-500">{error}</p>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Mot de passe</span>
+                            </label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Mot de passe"
+                                className="input input-bordered"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Confirmer le mot de passe</span>
+                            </label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                placeholder="Confirmer le mot de passe"
+                                className="input input-bordered"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-control mt-6">
+                            <button type="submit" className="btn btn-primary font-display font-light">M'inscrire</button>
+                        </div>
+                        <div className="form-control mt-4">
+                            <button type="button" onClick={onToggle} className="btn btn-secondary font-display font-light">
+                                Deja membre ? Connectez-vous
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div className="mb-4">
-                <label className="input input-bordered flex items-center gap-2">
-                    Password
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        className="grow"
-                        placeholder="Mot de passe"
-                    />
-                </label>
-            </div>
-            <div className="mb-4">
-                <label className="input input-bordered flex items-center gap-2">
-                    Password
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                        className="grow"
-                        placeholder="Confirmer le mot de passe"
-                    />
-                </label>
-            </div>
-            <button type="submit" className="btn btn-primary w-full">Sign Up</button>
-        </form>
+        </div>
     );
 };
 
