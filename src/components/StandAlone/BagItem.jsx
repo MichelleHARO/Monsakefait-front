@@ -70,12 +70,16 @@ const BagItem = ({ item }) => {
             />
             <div
                 //onClick={handleDelete}
-                className="flex justify-between items-center w-full"
+                className="join flex justify-between items-center w-full"
             >
                 
                 <span 
-                    className="mr-1">{name} : x{bag_contains_item.quantity}</span>
-                <div className="join">
+                    className="font-bold join-item">{name}</span>
+                <div>
+                    <span 
+                        className="font-bold mb-3 p-2 join-item">
+                        Qté: {bag_contains_item.quantity}
+                    </span>
                     <button
                         className="btn btn-sm">
                         <svg 

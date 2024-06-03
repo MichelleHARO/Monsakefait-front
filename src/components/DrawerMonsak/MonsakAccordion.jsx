@@ -72,7 +72,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
                     <select 
                         value={selectedItem} 
                         onChange={handleChangeSelect}
-                        className="select select-bordered w-full max-w-xs join-item">
+                        className="select select-bordered w-full select-sm max-w-xs join-item">
                         <option disabled selected>Ajouter un objet à Monsak {id}</option>
                         {allItems && allItems.map((item) => (
                             <option key={item.id} value={item.id}>{item.name}</option>
@@ -80,7 +80,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
                     </select>
                     <button
                         onClick={handleAddClick}
-                        className="btn font-display mt-4 bg-transparent border-gray-100 shadow-xl max-w-xs join-item">
+                        className="btn btn-sm font-display mt-4 bg-transparent border-gray-100 shadow-xl max-w-xs join-item">
                         Ajouter objet !
                     </button>
                 </div>
