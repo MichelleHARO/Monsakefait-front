@@ -1,24 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Collection from "./Collection.jsx";
 
 const Accordion = () => {
-    {/* RECUPERER UN ARRAY DE COLLECTION */
-    }
-    const CollectionArray = [
-        {id: 1,},
-        {id: 2,},
-        {id: 3,},
-        {id: 4,},
-        {id: 5,},
-        {id: 6,},
-    ];
+    const [collections, setCollections] = useState([]);
+    const [error, setError] = useState(null);
 
-    return (<div>
-        {/* FAIRE BOUCLE SUR LES COLLECTIONS */}
-        {CollectionArray.map((collection) => {
-            return (<Collection key={collection.id} id={collection.id}/>);
-        })}
-    </div>);
+    useEffect(() => {
+        const fetchCollections = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/api/collection');
+                setCollections(response.data);
+            } catch (error) {
+                console.error("Erreur lors de la récupération des collections", error);
+                setError("Erreur lors de la récupération des collections");
+            }
+        };
+
+        fetchCollections();
+    }, []);
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (collections.length === 0) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div>
+            {collections.map((collection) => (
+                <Collection key={collection.id} id={collection.id} />
+            ))}
+        </div>
+    );
 };
 
 export default Accordion;
