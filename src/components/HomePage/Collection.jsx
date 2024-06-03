@@ -1,8 +1,8 @@
-    import React, { useEffect, useState } from "react";
-    import axios from "axios";
-    import BagCard from "./BagCard.jsx";
-    import '../../index.css';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import BagCard from "./BagCard.jsx";
+import '../../index.css';
+import Carroussel from "./Carroussel.jsx";
 
     function Collection({ id }) {
       const [collection, setCollection] = useState(null);
@@ -38,16 +38,16 @@
           <div className="collapse-title text-xl font-medium font-display text-with-shadow">
             {collection.name}
           </div>
-          <div className="collapse-content mx-2">
-            <div className="flex flex-wrap">
-              {collection.bags.map((sac, index) => (
-                <BagCard key={index} sac={sac} />
-              ))}
-            </div>
-          </div>
+      <div className="collapse-content">
+        <div className="flex flex-wrap">
+          <Carroussel elements={collection.bags.map((sac, index) => (
+            <BagCard key={index} sac={sac} />
+          ))}>
+          </Carroussel>
         </div>
-          </div>
-      );
-    }
+        </div>
+      </div>
+  );
+}
 
     export default Collection;

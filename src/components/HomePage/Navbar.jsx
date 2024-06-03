@@ -30,6 +30,7 @@ const Navbar = () => {
         setTheme(newTheme);
     };
 
+
     return (
         <div className="navbar-fixed navbar-container mx-4">
             <div className="navbar bg-base-100 text-primary-content rounded-b-lg h-20 shadow-lg flex justify-between items-center">
@@ -74,12 +75,13 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <hr className="my-4 border-1 border-black" />
+
                         <DrawerContent />
                     </ul>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Navbar;

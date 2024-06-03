@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
 import '../../index.css';
 
 const SignUp = ({ onChange, onSubmit, onToggle }) => {
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
         confirmPassword: '',
     });
     const [error, setError] = useState('');
+    const apiUrl = useApiUrl();
+
+    // Log the apiUrl value
+    console.log(apiUrl);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -42,8 +48,8 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
                 body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword })
             });
 
-            if (response.ok) {
-                const data = await response.json();
+            if (response.status === 200) {
+                const data = await response.data;
                 console.log('Sign up successful:', data);
                 navigate('/login');
             } else {

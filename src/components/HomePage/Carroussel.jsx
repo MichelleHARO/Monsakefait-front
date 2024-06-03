@@ -1,70 +1,23 @@
 import { useState } from 'react';
-import ReactSimplyCarousel from 'react-simply-carousel';
 
-function Carroussel({ elements }) {
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  
+function Carroussel({ elements, name }) {
   return (
-    <div>
-      <ReactSimplyCarousel
-        activeSlideIndex={activeSlideIndex}
-        onRequestChange={setActiveSlideIndex}
-        itemsToShow={1}
-        itemsToScroll={1}
-        forwardBtnProps={{
-          //here you can also pass className, or any other button element attributes
-          style: {
-            alignSelf: 'center',
-            background: 'black',
-            border: 'none',
-            borderRadius: '50%',
-            color: 'white',
-            cursor: 'pointer',
-            fontSize: '20px',
-            height: 30,
-            lineHeight: 1,
-            textAlign: 'center',
-            width: 30,
-          },
-          children: <span>{`>`}</span>,
-        }}
-        backwardBtnProps={{
-          //here you can also pass className, or any other button element attributes
-          style: {
-            alignSelf: 'center',
-            background: 'black',
-            border: 'none',
-            borderRadius: '50%',
-            color: 'white',
-            cursor: 'pointer',
-            fontSize: '20px',
-            height: 30,
-            lineHeight: 1,
-            textAlign: 'center',
-            width: 30,
-          },
-          children: <span>{`<`}</span>,
-        }}
-        responsiveProps={[
-          {
-            itemsToShow: 1,
-            itemsToScroll: 2,
-            minWidth: 768,
-          },
-        ]}
-        speed={400}
-        easing="linear"
-      >
-        {
-          elements.map(element => (
-            <div>{element}</div>
-          ))
-        }
-      </ReactSimplyCarousel>
+    <div className="carousel w-full">
+      {elements.map((element, index) => (
+        <div key={index} id={`${name}-${index}`} className="carousel-item relative w-full">
+          {element}
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            {index > 0 && (
+              <a href={`#${name}-${index - 1}`} className="btn btn-circle">❮</a>
+            )}
+            {index < elements.length - 1 && (
+              <a href={`#${name}-${index + 1}`} className="btn btn-circle">❯</a>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
-
-
 
 export default Carroussel;
