@@ -50,7 +50,7 @@ function Collection({ id }) {
             <BagCard key={index} sac={sac} />
           ))}>
           </Carroussel>
-
+        </div>
         </div>
       </div>
   );
