@@ -45,7 +45,7 @@ const BagCard = ({ sac }) => {
                     <p>Aucun item disponible</p>
                 )}
             </div>
-            <div className="card-actions justify-center pb-2">
+            <div className="card-actions justify-center pb-2 z-10">
                 <button
                     className="btn btn-primary flex items-center shadow-inner"
                     onClick={handleAddToMonsak}
