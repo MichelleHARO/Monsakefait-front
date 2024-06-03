@@ -26,11 +26,13 @@ const DrawerContent = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    return (
-        <div className="flex flex-col items-center justify-center min-h-full p-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {messak.map((monsak) => (
-                    <MonsakButton
+    //console.log("Current Messak Array:", messak);
+    //console.log("Open Bag Accordion ID:", openBagAccordion);
+
+    return (<div className="flex flex-col items-center justify-center min-h-full p-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                {messak.map((monsak) => (<MonsakButton
+
                         key={monsak.id}
                         id={monsak.id}
                         name={monsak.name}
