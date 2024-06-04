@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Use Vite environment variable
 const apiUrl = import.meta.env.VITE_API_URL;
-console.log('API URL:', apiUrl);
+//console.log('API URL:', apiUrl);
 
 const axiosInstance = axios.create({
     baseURL: `${apiUrl}/api`,

@@ -26,12 +26,12 @@ const LoginPage = () => {
 
     const handleLoginSubmit = (formData) => {
         // Logique de connexion
-        console.log('Login Data:', formData);
+        //console.log('Login Data:', formData);
     };
 
     const handleSignUpSubmit = (formData) => {
         // Logique d'inscription
-        console.log('Sign Up Data:', formData);
+        //console.log('Sign Up Data:', formData);
     };
 
     return (

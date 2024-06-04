@@ -28,7 +28,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
         fetchItems();
     }, [])
 
-    const handleChange = (event) => {
+    const handleChangeSelect = (event) => {
         setSelectedItem(event.target.value);
     };
 
@@ -38,18 +38,18 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
 
     //handle 
     const handleAddClick = async () => {
-        console.log(selectedItem, id)
+        //console.log(selectedItem, id)
         try {
             const response = await axiosInstance.post(`${apiUrl}/api/me/item/addItem/${id}`,
             { selectedItem });
-            console.log("Server response :", response.data)
+            //console.log("Server response :", response.data)
             const newToken = response.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);
                 console.log('Token updated in localStorage')
             }
         } catch (error) {
-            console.error("Error while adding Item from Monsak !", error)
+            console.error("Error while adding Item in Monsak !", error)
         }
     }
 
@@ -66,17 +66,17 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
             </div>
             <div className="collapse-content">
                 <p className="font-bold">{description}</p>
-                <div className="mt-4">
-                    {items &&
-                        items.map((item, index) => (
-                            <BagItem key={index} item={item} />
-                        ))}
-                </div>
-                <div className="flex justify-center mb-3">
+                    <div className="mt-4">
+                        {items &&
+                            items.map((item, index) => (
+                                <BagItem key={index} item={item} />
+                            ))}
+                    </div>
+                <div className="flex justify-center m-4 join join-vertical lg:join-horizontal">
                     <select 
                         value={selectedItem} 
-                        onChange={handleChange}
-                        className="select select-bordered w-full max-w-xs">
+                        onChange={handleChangeSelect}
+                        className="select select-bordered  w-full select-sm max-w-xs join-item">
                         <option disabled selected>Ajouter un objet à Monsak {id}</option>
                         {allItems && allItems.map((item) => (
                             <option key={item.id} value={item.id}>{item.name}</option>
@@ -84,7 +84,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
                     </select>
                     <button
                         onClick={handleAddClick}
-                        className="btn font-display mt-4 bg-transparent border-gray-100 shadow-xl">
+                        className="btn btn-sm font-display mt-4 bg-transparent border-gray-100 shadow-xl max-w-xs join-item">
                         Ajouter objet !
                     </button>
                 </div>
