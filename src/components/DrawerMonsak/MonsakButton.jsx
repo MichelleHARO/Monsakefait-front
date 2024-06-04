@@ -3,6 +3,7 @@ import React from 'react';
 import axiosInstance from '../StandAlone/axiosInstance';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+//Component which manages accordion show/hide through buttons on top of navbar
 const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
 
     const handleClick = (id) => {

@@ -3,6 +3,7 @@ import BagItem from "../StandAlone/BagItem.jsx";
 import axiosInstance from "../StandAlone/axiosInstance.jsx";
 import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 
+//component which manages list of items with BagItem and selector to add item to a bag
 const MonsakAccordion = ({ monsak, openBagAccordion }) => {
     const { id, name, image, description, items } = monsak;
 

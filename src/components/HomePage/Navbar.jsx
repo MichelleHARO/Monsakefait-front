@@ -8,6 +8,7 @@ import logoLight from '../../assets/Logov2.svg';
 import logoDark from '../../assets/logonavdark.svg';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+//Component which manages data in navbar
 const Navbar = () => {
     const [userEmail, setUserEmail] = useState('prout@prout.prout');
     const [theme, setTheme] = useState(

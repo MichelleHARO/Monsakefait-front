@@ -6,6 +6,7 @@ import '../../index.css';
 import {useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 // eslint-disable-next-line react/prop-types
+//Display bags in a collection
 function Collection({ id }) {
     const [collection, setCollection] = useState(null);
     const [error, setError] = useState(null);

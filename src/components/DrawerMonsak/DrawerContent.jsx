@@ -5,6 +5,7 @@ import MonsakAccordion from "./MonsakAccordion.jsx";
 import axiosInstance from '../StandAlone/axiosInstance.jsx';
 import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 
+//Component which manage Content in navbar, if bags added by user, they are displayed here
 const DrawerContent = () => {
     const [openBagAccordion, setOpenBagAccordion] = useState(1);
     const [messak, setMessak] = useState([]);

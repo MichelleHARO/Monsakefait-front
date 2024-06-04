@@ -4,6 +4,7 @@ import axios from 'axios';
 import Collection from "./Collection.jsx";
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+//Homepage accordion views of collections
 const Accordion = () => {
     const [collections, setCollections] = useState([]);
     const [error, setError] = useState(null);
