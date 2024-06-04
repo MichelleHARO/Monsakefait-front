@@ -14,13 +14,10 @@ function Collection({ id }) {
     useEffect(() => {
         const fetchCollection = async () => {
             try {
-<<<<<<< HEAD
-                const response = await axios.get(`http://localhost:3001/api/collection/${id}`);
-                //console.log("Data fetched:", response.data);
-=======
+
                 const response = await axios.get(`${apiUrl}/api/collection/${id}`);
                 console.log("Data fetched:", response.data);
->>>>>>> dev
+
                 setCollection(response.data);
             } catch (error) {
                 console.error("Error fetching collection", error);

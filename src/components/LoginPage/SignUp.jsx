@@ -56,13 +56,10 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
             });
 
             if (response.status === 200) {
-<<<<<<< HEAD
-                const data = await response.data;
-                //console.log('Sign up successful:', data);
-=======
+
                 const data = await response.json();
-                console.log('Sign up successful:', data);
->>>>>>> dev
+            //    console.log('Sign up successful:', data);
+
                 navigate('/login');
             } else {
                 const errorData = await response.json();
