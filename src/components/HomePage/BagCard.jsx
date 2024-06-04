@@ -21,7 +21,7 @@ const BagCard = ({ sac }) => {
                 console.log('Token updated in localStorage');
             }
         } catch (error) {
-            console.error("Erreur while adding to Monsak !", error);
+            console.error("Erreur while adding Bag to Monsak !", error);
         }
     };
 

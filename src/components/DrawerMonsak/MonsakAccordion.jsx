@@ -42,10 +42,10 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
             const newToken = response.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);
-                //console.log('Token updated in localStorage')
+                console.log('Token updated in localStorage')
             }
         } catch (error) {
-            console.error("Error while adding Item from Monsak !", error)
+            console.error("Error while adding Item in Monsak !", error)
         }
     }
 
@@ -68,11 +68,11 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
                                 <BagItem key={index} item={item} />
                             ))}
                     </div>
-                <div className="flex justify-center mb-3 join join-vertical lg:join-horizontal">
+                <div className="flex justify-center m-4 join join-vertical lg:join-horizontal">
                     <select 
                         value={selectedItem} 
                         onChange={handleChangeSelect}
-                        className="select select-bordered w-full select-sm max-w-xs join-item">
+                        className="select select-bordered  w-full select-sm max-w-xs join-item">
                         <option disabled selected>Ajouter un objet à Monsak {id}</option>
                         {allItems && allItems.map((item) => (
                             <option key={item.id} value={item.id}>{item.name}</option>

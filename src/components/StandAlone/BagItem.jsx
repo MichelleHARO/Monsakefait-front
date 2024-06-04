@@ -77,7 +77,7 @@ const BagItem = ({ item }) => {
                     className="font-bold join-item">{name}</span>
                 <div>
                     <span 
-                        className="font-bold mb-3 p-2 join-item">
+                        className="font-bold text-center p-2 join-item">
                         Qté: {bag_contains_item.quantity}
                     </span>
                     <button

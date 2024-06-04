@@ -16,7 +16,6 @@ const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
         try {
             const responseDelete = await axiosInstance.delete(`http://localhost:3001/api/me/bag/${id}`);
             //console.log("Server response :", responseDelete.data);
-
             const newToken = responseDelete.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);
@@ -25,7 +24,6 @@ const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 console.error("Invalid token, please log in again.");
-                // Logique pour rediriger l'utilisateur vers la page de connexion ou rafraîchir le jeton
             } else {
                 console.error("Erreur while deleting from Monsak !", error);
             }
