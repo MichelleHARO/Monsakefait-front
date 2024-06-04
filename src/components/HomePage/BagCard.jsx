@@ -1,9 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import axiosInstance from '../StandAlone/axiosInstance';
 import '../../index.css';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+// eslint-disable-next-line react/prop-types
 const BagCard = ({ sac }) => {
     if (!sac) {
         return <div>Sac non trouvé</div>;

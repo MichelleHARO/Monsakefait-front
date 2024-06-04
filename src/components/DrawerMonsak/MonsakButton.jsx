@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import axiosInstance from '../StandAlone/axiosInstance';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";

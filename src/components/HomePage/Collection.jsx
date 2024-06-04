@@ -1,9 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carroussel from "./Carroussel.jsx";
 import '../../index.css';
 import {useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+// eslint-disable-next-line react/prop-types
 function Collection({ id }) {
     const [collection, setCollection] = useState(null);
     const [error, setError] = useState(null);

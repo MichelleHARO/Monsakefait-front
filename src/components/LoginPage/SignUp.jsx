@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
