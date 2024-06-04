@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../index.css';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 const Login = ({ onChange, onSubmit, onToggle }) => {
     const [formData, setFormData] = useState({
@@ -19,13 +20,14 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
         });
         if (onChange) onChange(formData);
     };
+    const apiUrl = useApiUrl();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://localhost:3001/api/user/login', {
+            const response = await fetch(`${apiUrl}/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

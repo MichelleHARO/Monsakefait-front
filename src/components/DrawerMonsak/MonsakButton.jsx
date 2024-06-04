@@ -14,8 +14,9 @@ const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
         console.log("Deleting item with id:", id);
 
         try {
-            const responseDelete = await axiosInstance.delete(`http://localhost:3001/api/me/bag/${id}`);
+            const responseDelete = await axiosInstance.delete(`${apiUrl}/api/me/bag/${id}`);
             //console.log("Server response :", responseDelete.data);
+
             const newToken = responseDelete.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);

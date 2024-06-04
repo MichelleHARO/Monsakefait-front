@@ -5,18 +5,19 @@ import DrawerContent from '../DrawerMonsak/DrawerContent.jsx';
 import DarkModeHandler from '../StandAlone/darkModeHandler.jsx';
 import logoLight from '../../assets/Logov2.svg';
 import logoDark from '../../assets/logonavdark.svg';
-
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 const Navbar = () => {
     const [userEmail, setUserEmail] = useState('prout@prout.prout');
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
     );
+    const apiUrl = useApiUrl();
 
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const response = await axiosInstance.get('http://localhost:3001/api/me/info');
+                const response = await axiosInstance.get(`${apiUrl}/api/me/info`);
                 setUserEmail(response.data);
             } catch (error) {
                 console.log(error);

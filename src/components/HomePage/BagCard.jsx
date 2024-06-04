@@ -2,6 +2,7 @@ import React from 'react';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import axiosInstance from '../StandAlone/axiosInstance';
 import '../../index.css';
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 const BagCard = ({ sac }) => {
     if (!sac) {
@@ -10,11 +11,18 @@ const BagCard = ({ sac }) => {
 
     const { id, name, description, items } = sac;
 
+    const apiUrl = useApiUrl();
+
     // Fonction pour gérer l'ajout à Monsak
     const handleAddToMonsak = async () => {
         try {
+<<<<<<< HEAD
             const response = await axiosInstance.post(`http://localhost:3001/api/me/bag/${id}`);
             //console.log("Server response :", response.data);
+=======
+            const response = await axiosInstance.post(`${apiUrl}/api/me/bag/${id}`);
+            console.log("Server response :", response.data);
+>>>>>>> dev
             const newToken = response.data.newToken;
             if (newToken) {
                 localStorage.setItem('token', newToken);

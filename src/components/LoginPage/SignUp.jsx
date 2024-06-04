@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import '../../index.css';
 
 const SignUp = ({ onChange, onSubmit, onToggle }) => {
-
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -17,7 +16,6 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
     //console.log(apiUrl);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -26,7 +24,7 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
             ...formData,
             [name]: value
         });
-        if (onChange) onChange(formData);
+        if (onChange) onChange({ ...formData, [name]: value });
     };
 
     const handleSubmit = async (e) => {
@@ -37,26 +35,43 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
             return;
         }
 
+        if (formData.password !== formData.confirmPassword) {
+            setError('Les mots de passe ne correspondent pas.');
+            return;
+        }
+
         if (onSubmit) onSubmit(formData);
 
         try {
-            const response = await fetch('http://localhost:3001/api/user/signup', {
+            const response = await fetch(`${apiUrl}/api/user/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword })
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password,
+                    confirmPassword: formData.confirmPassword
+                })
             });
 
             if (response.status === 200) {
+<<<<<<< HEAD
                 const data = await response.data;
                 //console.log('Sign up successful:', data);
+=======
+                const data = await response.json();
+                console.log('Sign up successful:', data);
+>>>>>>> dev
                 navigate('/login');
             } else {
-                console.error('Sign up failed:', response.statusText);
+                const errorData = await response.json();
+                console.error('Sign up failed:', errorData.message);
+                setError(errorData.message || 'Échec de l\'inscription');
             }
         } catch (error) {
             console.error('Error during sign up:', error);
+            setError('Erreur lors de l\'inscription. Veuillez réessayer plus tard.');
         }
     };
 

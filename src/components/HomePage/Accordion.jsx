@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Collection from "./Collection.jsx";
+import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 const Accordion = () => {
     const [collections, setCollections] = useState([]);
     const [error, setError] = useState(null);
 
+    const apiUrl = useApiUrl();
+
     useEffect(() => {
         const fetchCollections = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/collection');
+                const response = await axios.get(`${apiUrl}/api/collection`);
                 setCollections(response.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération des collections", error);
