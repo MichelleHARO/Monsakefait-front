@@ -9,6 +9,7 @@ const DrawerContent = () => {
     const [messak, setMessak] = useState([]);
     const apiUrl = useApiUrl(); // Use the hook inside the component
 
+    //fetch through axiosInstance get and setState for messak
     const fetchMonsakArray = async () => {
         try {
             const response = await axiosInstance.get(`${apiUrl}/api/me/bag`);
@@ -18,6 +19,7 @@ const DrawerContent = () => {
         }
     };
 
+    //Refresh fetchMonsakArray every 1000ms
     useEffect(() => {
         fetchMonsakArray();
 

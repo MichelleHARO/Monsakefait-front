@@ -13,7 +13,7 @@ const BagCard = ({ sac }) => {
 
     const apiUrl = useApiUrl();
 
-    // Fonction pour gérer l'ajout à Monsak
+    // When clicked, fetch through axiosInstance POST method on /me/bag/${id} and add bag with bag.id to Monsak in Drawer and store newToken in localStorage
     const handleAddToMonsak = async () => {
         try {
 

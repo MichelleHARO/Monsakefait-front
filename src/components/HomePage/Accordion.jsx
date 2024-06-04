@@ -9,6 +9,7 @@ const Accordion = () => {
 
     const apiUrl = useApiUrl();
 
+    //Fetch all collections through axios GET method without instance and setStatus for collections with response.data
     useEffect(() => {
         const fetchCollections = async () => {
             try {

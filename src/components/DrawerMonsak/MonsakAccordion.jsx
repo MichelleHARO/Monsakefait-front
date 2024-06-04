@@ -12,6 +12,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
 
     const apiUrl = useApiUrl();
 
+    //fetch Items through axiosInstance /me/item and setStatus for allItems with response.data
     useEffect(() => {
         const fetchItems = async () => {
             try {
@@ -24,14 +25,17 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
         fetchItems();
     }, []);
 
+    //setStatus for selectedItem through selector with target.value = itemId
     const handleChangeSelect = (event) => {
         setSelectedItem(event.target.value);
     };
 
+    //setStatus for "Monsakéfait !" button to change css classes
     const handleButtonClick = () => {
         setIsButtonClicked(!isButtonClicked);
     };
 
+    //add selectedItem to post through axiosInstance and get newToken in localStorage
     const handleAddClick = async () => {
         try {
             const response = await axiosInstance.post(`${apiUrl}/api/me/item/addItem/${id}`, { selectedItem });

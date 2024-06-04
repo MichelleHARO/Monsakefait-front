@@ -3,6 +3,7 @@ import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
 import '../../index.css';
 
+//signup component to register user in DB and then redirect to login
 const SignUp = ({ onChange, onSubmit, onToggle }) => {
     const [formData, setFormData] = useState({
         email: '',
@@ -18,6 +19,7 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const navigate = useNavigate();
 
+    //setSStatus for formData with user inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -27,6 +29,7 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
         if (onChange) onChange({ ...formData, [name]: value });
     };
 
+    //when button clicked fetch POST method /user/signup
     const handleSubmit = async (e) => {
         e.preventDefault();
 

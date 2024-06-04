@@ -10,7 +10,7 @@ function Collection({ id }) {
 
     const apiUrl = useApiUrl();
 
-
+    //fetch through axios without instance GET method one collection with id /collection/${id} and setStatus for collection with response.data
     useEffect(() => {
         const fetchCollection = async () => {
             try {

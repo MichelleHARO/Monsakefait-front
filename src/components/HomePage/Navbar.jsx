@@ -14,6 +14,7 @@ const Navbar = () => {
     );
     const apiUrl = useApiUrl();
 
+    //fetch through axios instance GET method user infos /me/info and setStatus for userEmail with response.data
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
@@ -27,6 +28,7 @@ const Navbar = () => {
         fetchUserInfo();
     }, []);
 
+    //when clicked, setStatus for theme, switch between light and dark mode
     const handleThemeChange = (newTheme) => {
         setTheme(newTheme);
     };
