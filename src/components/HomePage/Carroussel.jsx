@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import BagCard from "./BagCard.jsx";
 
+//Carrousel component where slides are set through BagCard
 function Carroussel({ elements }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 

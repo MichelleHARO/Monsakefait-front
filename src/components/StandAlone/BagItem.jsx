@@ -4,6 +4,7 @@ import axiosInstance from "./axiosInstance";
 import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 
 // eslint-disable-next-line react/prop-types
+// Component which manage items in Drawer
 const BagItem = ({ item }) => {
     const { id, name, bag_contains_item } = item;
     const [isChecked, setIsChecked] = useState(false);
@@ -14,6 +15,7 @@ const BagItem = ({ item }) => {
 
     const apiUrl = useApiUrl();
 
+    //onClick add item quantity through axiosInstance POST method /me/item/addQuantity/${id}
     const handleAddQuantity = async () => {
         try {
             const response = await axiosInstance.post(`${apiUrl}/api/me/item/addQuantity/${id}`, { bag_contains_item });
@@ -27,6 +29,7 @@ const BagItem = ({ item }) => {
         }
     };
 
+    //onClick remove item quantity through axiosInstance DELETE method /me/item/removeQuantity/${id}
     const handleRemoveQuantity = async () => {
         try {
             const response = await axiosInstance.delete(`${apiUrl}/api/me/item/removeQuantity/${id}`, { params: { bag_contains_item } });
@@ -40,6 +43,7 @@ const BagItem = ({ item }) => {
         }
     };
 
+    //onClick remove all item through axiosInstance DELETE method /me/item/removeItem/${id}
     const handleDeleteItem = async () => {
         try {
             const response = await axiosInstance.delete(`${apiUrl}/api/me/item/removeItem/${id}`, { params: { bag_contains_item } });

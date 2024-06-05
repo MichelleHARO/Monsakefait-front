@@ -6,13 +6,14 @@ import '../../index.css';
 import {useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 // eslint-disable-next-line react/prop-types
+//Display bags in a collection
 function Collection({ id }) {
     const [collection, setCollection] = useState(null);
     const [error, setError] = useState(null);
 
     const apiUrl = useApiUrl();
 
-
+    //fetch through axios without instance GET method one collection with id /collection/${id} and setStatus for collection with response.data
     useEffect(() => {
         const fetchCollection = async () => {
             try {

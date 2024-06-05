@@ -6,6 +6,7 @@ import '../../index.css';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
 // eslint-disable-next-line react/prop-types
+//Component which display bag as cards in carrousel
 const BagCard = ({ sac }) => {
     if (!sac) {
         return <div>Sac non trouvé</div>;
@@ -15,7 +16,7 @@ const BagCard = ({ sac }) => {
 
     const apiUrl = useApiUrl();
 
-    // Fonction pour gérer l'ajout à Monsak
+    // When clicked, fetch through axiosInstance POST method on /me/bag/${id} and add bag with bag.id to Monsak in Drawer and store newToken in localStorage
     const handleAddToMonsak = async () => {
         try {
 

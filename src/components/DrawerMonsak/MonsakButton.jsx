@@ -3,6 +3,7 @@ import React from 'react';
 import axiosInstance from '../StandAlone/axiosInstance';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+//Component which manages accordion show/hide through buttons on top of navbar
 const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
 
     const handleClick = (id) => {
@@ -11,8 +12,9 @@ const MonsakButton = ({ id, setOpenBagAccordion, theme }) => {
 
     const apiUrl = useApiUrl();
 
+    //When clicked, delete Bag with id through axios instance DELETE method /me/bag/${id} and store newToken in localStorage
     const handleBagDelete = async (id) => {
-        console.log("Deleting item with id:", id);
+        //console.log("Deleting item with id:", id);
 
         try {
             const responseDelete = await axiosInstance.delete(`${apiUrl}/api/me/bag/${id}`);

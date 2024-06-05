@@ -4,12 +4,14 @@ import axios from 'axios';
 import Collection from "./Collection.jsx";
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+//Homepage accordion views of collections
 const Accordion = () => {
     const [collections, setCollections] = useState([]);
     const [error, setError] = useState(null);
 
     const apiUrl = useApiUrl();
 
+    //Fetch all collections through axios GET method without instance and setStatus for collections with response.data
     useEffect(() => {
         const fetchCollections = async () => {
             try {

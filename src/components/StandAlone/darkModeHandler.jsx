@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
 const DarkModeHandler = ({ onThemeChange }) => {
-    // Utilise le thème du localStorage si disponible ou définit le thème clair par défaut
+    //Use theme in localStorage if up or define light theme by default
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
     );
 
-    // Met à jour l'état lors du toggle
+    //Update state when toggle
     const handleToggle = (e) => {
         const newTheme = e.target.checked ? "dark" : "light";
         setTheme(newTheme);
-        onThemeChange(newTheme); // Appelle la fonction de rappel pour notifier le changement de thème
+        onThemeChange(newTheme); // Callback to notify theme switch
     };
 
-    // Définit l'état du thème dans le localStorage lors du montage et met à jour le localStorage lors des changements d'état
+    //Define theme State in localStorage when component built and update localStorage when State change
     useEffect(() => {
         localStorage.setItem("theme", theme);
         const localTheme = localStorage.getItem("theme");
-        // Ajoute l'attribut data-theme personnalisé à la balise html requis pour mettre à jour le thème avec DaisyUI
+        //Add personalized data-theme attribute to html tag which is required to update theme with DaisyUI
         document.querySelector("html").setAttribute("data-theme", localTheme);
     }, [theme]);
 
@@ -28,10 +28,10 @@ const DarkModeHandler = ({ onThemeChange }) => {
                     <input
                         type="checkbox"
                         onChange={handleToggle}
-                        // Affiche l'image de toggle en fonction du thème enregistré dans localStorage
+                        // Show toggle image according to saved theme in localStorage
                         checked={theme !== "light"}
                     />
-                    {/* Icône de thème clair (soleil) */}
+                    {/* Light theme icon (sun) */}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -40,7 +40,7 @@ const DarkModeHandler = ({ onThemeChange }) => {
                     >
                         <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
                     </svg>
-                    {/* Icône de thème sombre (lune) */}
+                    {/* Dark theme icon (moon) */}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"

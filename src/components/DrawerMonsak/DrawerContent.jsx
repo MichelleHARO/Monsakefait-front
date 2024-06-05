@@ -5,11 +5,13 @@ import MonsakAccordion from "./MonsakAccordion.jsx";
 import axiosInstance from '../StandAlone/axiosInstance.jsx';
 import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 
+//Component which manage Content in navbar, if bags added by user, they are displayed here
 const DrawerContent = () => {
     const [openBagAccordion, setOpenBagAccordion] = useState(1);
     const [messak, setMessak] = useState([]);
     const apiUrl = useApiUrl(); // Use the hook inside the component
 
+    //fetch through axiosInstance get and setState for messak
     const fetchMonsakArray = async () => {
         try {
             const response = await axiosInstance.get(`${apiUrl}/api/me/bag`);
@@ -19,6 +21,7 @@ const DrawerContent = () => {
         }
     };
 
+    //Refresh fetchMonsakArray every 1000ms
     useEffect(() => {
         fetchMonsakArray();
 

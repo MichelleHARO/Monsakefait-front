@@ -8,6 +8,7 @@ import logoLight from '../../assets/Logov2.svg';
 import logoDark from '../../assets/logonavdark.svg';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+//Component which manages data in navbar
 const Navbar = () => {
     const [userEmail, setUserEmail] = useState('prout@prout.prout');
     const [theme, setTheme] = useState(
@@ -15,6 +16,7 @@ const Navbar = () => {
     );
     const apiUrl = useApiUrl();
 
+    //fetch through axios instance GET method user infos /me/info and setStatus for userEmail with response.data
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
@@ -28,6 +30,7 @@ const Navbar = () => {
         fetchUserInfo();
     }, []);
 
+    //when clicked, setStatus for theme, switch between light and dark mode
     const handleThemeChange = (newTheme) => {
         setTheme(newTheme);
     };

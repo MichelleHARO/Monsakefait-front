@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../index.css';
 import { useApiUrl} from "../../context/ApiUrlContext.jsx";
 
+//component for login data & get Token in localStorage from back-end
 const Login = ({ onChange, onSubmit, onToggle }) => {
     const [formData, setFormData] = useState({
         email: '',
@@ -23,6 +24,7 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
     };
     const apiUrl = useApiUrl();
 
+    //setStatus for formdata with user inputs and send them when button clicked through POST method /user/login
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (onSubmit) onSubmit(formData);
@@ -40,6 +42,7 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
                 throw new Error('Error logging in');
             }
 
+            //set Token in localStorage
             const data = await response.json();
             const { token } = data;
             setFormData({ ...formData, token });

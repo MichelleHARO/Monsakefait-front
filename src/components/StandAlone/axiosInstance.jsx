@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
     }
 });
 
-// Ajouter un intercepteur de requête pour inclure le token dans chaque requête
+//Add request interceptor through Axios to include token in each request to go through private routes
 axiosInstance.interceptors.request.use(
     config => {
         const token = localStorage.getItem('token');
