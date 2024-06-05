@@ -19,7 +19,7 @@ function Collection({ id }) {
             try {
 
                 const response = await axios.get(`${apiUrl}/api/collection/${id}`);
-                console.log("Data fetched:", response.data);
+                //console.log("Data fetched:", response.data);
 
                 setCollection(response.data);
             } catch (error) {
