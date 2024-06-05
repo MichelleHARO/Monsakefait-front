@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import BagItem from "../StandAlone/BagItem.jsx";
 import axiosInstance from "../StandAlone/axiosInstance.jsx";
 import { useApiUrl } from "../../context/ApiUrlContext.jsx";
+import Confetti from 'react-confetti';
+import monSacEstFait from '../../assets/audio/monsacestfaitv1.mp3';
 
-//component which manages list of items with BagItem and selector to add item to a bag
+
 const MonsakAccordion = ({ monsak, openBagAccordion }) => {
     const { id, name, image, description, items } = monsak;
 
     const [isButtonClicked, setIsButtonClicked] = useState(true);
     const [selectedItem, setSelectedItem] = useState(null);
     const [allItems, setAllItems] = useState([]);
+    const [showConfetti, setShowConfetti] = useState(false);
 
     const apiUrl = useApiUrl();
 
-    //fetch Items through axiosInstance /me/item and setStatus for allItems with response.data
     useEffect(() => {
         const fetchItems = async () => {
             try {
@@ -24,19 +26,25 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
             }
         };
         fetchItems();
-    }, []);
+    }, [apiUrl]);
 
-    //setStatus for selectedItem through selector with target.value = itemId
     const handleChangeSelect = (event) => {
         setSelectedItem(event.target.value);
     };
 
-    //setStatus for "Monsakéfait !" button to change css classes
     const handleButtonClick = () => {
         setIsButtonClicked(!isButtonClicked);
+        setShowConfetti(true);
+
+        // Play the custom sound
+        const audio = new Audio(monSacEstFait);
+        audio.play();
+
+        setTimeout(() => {
+            setShowConfetti(false);
+        }, 5000); // show confetti for 5 seconds
     };
 
-    //add selectedItem to post through axiosInstance and get newToken in localStorage
     const handleAddClick = async () => {
         try {
             const response = await axiosInstance.post(`${apiUrl}/api/me/item/addItem/${id}`, { selectedItem });
@@ -52,6 +60,7 @@ const MonsakAccordion = ({ monsak, openBagAccordion }) => {
 
     return (
         <div className="collapse collapse-arrow bg-base-200">
+            {showConfetti && <Confetti />}
             <input
                 type="radio"
                 name="my-accordion-2"

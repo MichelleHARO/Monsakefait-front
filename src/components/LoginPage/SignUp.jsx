@@ -1,10 +1,9 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApiUrl } from "../../context/ApiUrlContext.jsx";
 import { useNavigate } from 'react-router-dom';
+import Confetti from 'react-confetti';
 import '../../index.css';
 
-//signup component to register user in DB and then redirect to login
 const SignUp = ({ onChange, onSubmit, onToggle }) => {
     const [formData, setFormData] = useState({
         email: '',
@@ -12,15 +11,11 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
         confirmPassword: '',
     });
     const [error, setError] = useState('');
+    const [showConfetti, setShowConfetti] = useState(false);
     const apiUrl = useApiUrl();
-
-    // Log the apiUrl value
-    //console.log(apiUrl);
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const navigate = useNavigate();
 
-    //setSStatus for formData with user inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -30,7 +25,6 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
         if (onChange) onChange({ ...formData, [name]: value });
     };
 
-    //when button clicked fetch POST method /user/signup
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -60,11 +54,12 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
             });
 
             if (response.status === 200) {
-
                 const data = await response.json();
-            //    console.log('Sign up successful:', data);
-
-                navigate('/login');
+                setShowConfetti(true);
+                setTimeout(() => {
+                    setShowConfetti(false);
+                    navigate('/login');
+                }, 5000); // show confetti for 5 seconds
             } else {
                 const errorData = await response.json();
                 console.error('Sign up failed:', errorData.message);
@@ -78,6 +73,7 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
+            {showConfetti && <Confetti />}
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold font-display">Bienvenue !</h1>
@@ -97,7 +93,7 @@ const SignUp = ({ onChange, onSubmit, onToggle }) => {
                             <input
                                 type="email"
                                 name="email"
-                                placeholder="email"
+                                placeholder="Email"
                                 className="input input-bordered"
                                 value={formData.email}
                                 onChange={handleChange}
