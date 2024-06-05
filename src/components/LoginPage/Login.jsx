@@ -73,7 +73,7 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
                             <input
                                 type="email"
                                 name="email"
-                                placeholder="email"
+                                placeholder="Email"
                                 className="input input-bordered"
                                 value={formData.email}
                                 onChange={handleChange}
@@ -87,7 +87,7 @@ const Login = ({ onChange, onSubmit, onToggle }) => {
                             <input
                                 type="password"
                                 name="password"
-                                placeholder="mot de passe"
+                                placeholder="Mot de passe"
                                 className="input input-bordered"
                                 value={formData.password}
                                 onChange={handleChange}
